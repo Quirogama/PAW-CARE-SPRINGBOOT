@@ -2,6 +2,8 @@ package com.example.pawcare.entidad;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,6 +24,7 @@ public class Tratamiento {
     private Droga droga;
 
     @ManyToOne
+    @JsonIgnore
     private Veterinario veterinario;
 
     @OneToMany(mappedBy = "tratamiento", cascade = CascadeType.ALL, orphanRemoval = true)
