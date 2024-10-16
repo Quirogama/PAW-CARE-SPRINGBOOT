@@ -91,8 +91,13 @@ public class MascotaController {
     }
 
     @PutMapping("/modificar/{id}")
-    public void actualizarMascota(@RequestBody Mascota mascota) {
-        mascotaService.update(mascota);
+    public void actualizarMascota(@PathVariable Long id, @RequestBody Mascota mascota) {
+    Mascota mascotaExistente = mascotaService.SearchById(id);
+    if (mascotaExistente.getCliente() != null) {
+        mascota.setCliente(mascotaExistente.getCliente());
     }
+    mascotaService.update(mascota);
+}
+
 
 }
