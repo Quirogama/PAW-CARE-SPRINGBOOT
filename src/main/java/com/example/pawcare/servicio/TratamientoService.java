@@ -10,4 +10,5 @@ public interface TratamientoService {
     public void add(Tratamiento tratamiento);
     public void deleteById(Long id);
     public void update(Tratamiento tratamiento);
+    public Long getCantidadTratamientosUltimoMes();
 }
