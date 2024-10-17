@@ -41,6 +41,12 @@ public class VeterinarioController {
         return veterinario;
     }
 
+    @GetMapping("/cedula/{cedula}")
+    public Veterinario mostrarInfoVeterinario(@PathVariable("cedula") int cedula){
+        Veterinario veterinario = veterinarioService.SearchByCedula(cedula);
+        return veterinario;
+    }
+
     //http://localhost:8080/veterinario/add
     @GetMapping("/add")
     public String mostrarFormularioRegistro(Model model) {
