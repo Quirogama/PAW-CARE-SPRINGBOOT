@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.pawcare.entidad.Tratamiento;
 import com.example.pawcare.entidad.Veterinario;
 import com.example.pawcare.servicio.VeterinarioService;
 
@@ -74,6 +75,11 @@ public class VeterinarioController {
     @PutMapping("/modificar/{id}")
     public void actualizarVeterinario(@RequestBody Veterinario veterinario) {
         veterinarioService.update(veterinario);
+    }
+
+    @GetMapping("/tratamientos/{id}")
+    public List<Tratamiento> tratamientosVeterinario(@PathVariable("id") Long id){
+        return veterinarioService.SearchById(id).getTratamientos();
     }
 
 }

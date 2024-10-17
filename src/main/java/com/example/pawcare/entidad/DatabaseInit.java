@@ -1,6 +1,7 @@
 
 package com.example.pawcare.entidad;
 
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -101,10 +102,10 @@ public class DatabaseInit implements ApplicationRunner {
         
         
         //Mascotas
-        mascotaRepository.save(new Mascota("Lucas", "15", "Labrador", "Displasia de cadera", "En tratamiento", 5, "assets/img/lucas.jpg"));
+        mascotaRepository.save(new Mascota("Lucas", "5", "Labrador", "Displasia de cadera", "En tratamiento", 5, "assets/img/lucas.jpg"));
         mascotaRepository.save(new Mascota("Pablo", "1", "Desconocida", "Otitis", "Recuperado", 3, "assets/img/pablo.jpg"));
-        mascotaRepository.save(new Mascota("Jhony", "25", "Criollo", "Artritis", "En tratamiento", 7, "assets/img/jhony.jpg"));
-        mascotaRepository.save(new Mascota("Miguel", "30", "Husky", "Alergia alimentaria", "En tratamiento", 4, "assets/img/miguel.jpg"));
+        mascotaRepository.save(new Mascota("Jhony", "10", "Criollo", "Artritis", "En tratamiento", 7, "assets/img/jhony.jpg"));
+        mascotaRepository.save(new Mascota("Miguel", "200", "Husky", "Alergia alimentaria", "En tratamiento", 4, "assets/img/miguel.jpg"));
         mascotaRepository.save(new Mascota("Zeus", "4", "Pastor Aleman", "Problemas dentales", "Recuperado", 2, "assets/img/Zeus.jpg"));
         mascotaRepository.save(new Mascota("Coco", "4", "Pastor Aleman", "Problemas dentales", "Recuperado", 2, "assets/img/perroGenerico.png"));
         mascotaRepository.save(new Mascota("Max", "5", "Labrador", "Corte de orejas", "Recuperado", 3, "assets/img/perroGenerico.png"));
@@ -117,7 +118,7 @@ public class DatabaseInit implements ApplicationRunner {
         mascotaRepository.save(new Mascota("Sadie", "5", "Dachshund", "Corte en la pata", "En tratamiento", 2, "assets/img/perroGenerico.png"));
         mascotaRepository.save(new Mascota("Buddy", "4", "Cocker Spaniel", "Fiebre", "Recuperado", 4, "assets/img/perroGenerico.png"));
         mascotaRepository.save(new Mascota("Maggie", "6", "Schnauzer", "Tos persistente", "En observación", 1, "assets/img/perroGenerico.png"));
-        mascotaRepository.save(new Mascota("Toby", "7", "Pug", "Problemas de digestión", "En tratamiento", 5, "assets/img/perroGenerico.png"));
+        mascotaRepository.save(new Mascota("Sakura", "5", "Pug", "Problemas de digestión", "En tratamiento", 6, "assets/img/perroGenerico.png"));
         mascotaRepository.save(new Mascota("Jake", "3", "Shih Tzu", "Alergias", "Recuperado", 2, "assets/img/perroGenerico.png"));
         mascotaRepository.save(new Mascota("Lola", "5", "Pomerania", "Raspaduras en la piel", "En observación", 3, "assets/img/perroGenerico.png"));
         mascotaRepository.save(new Mascota("Bentley", "8", "Husky", "Dolores de estómago", "En tratamiento", 4, "assets/img/perroGenerico.png"));
@@ -201,6 +202,7 @@ public class DatabaseInit implements ApplicationRunner {
         mascotaRepository.save(new Mascota("Roxy", "8", "Cocker Spaniel", "Fiebre baja", "En observación", 3, "assets/img/perroGenerico.png"));
         mascotaRepository.save(new Mascota("Nina", "4", "Pug", "Infección en el ojo", "En tratamiento", 2, "assets/img/perroGenerico.png"));
         mascotaRepository.save(new Mascota("Daisy", "5", "Dachshund", "Problemas dentales", "Recuperado", 4, "assets/img/perroGenerico.png"));
+        
 
         //Veterinarios
         veterinarioRepository.save(new Veterinario("Dr. House", 9991234, "Tratamientos Oculares", "assets/img/veterinarioGenerico.png", 3, "clave123"));
@@ -275,6 +277,16 @@ public class DatabaseInit implements ApplicationRunner {
                 mascotaRepository.save(mascota);
             }
         }
+
+        List<Veterinario> primerosDiezVeterinarios = veterinarioRepository.findAll().subList(0, 10);
+        List<Tratamiento> todosLosTratamientos = tratamientoRepository.findAll();
+        for (int i = 0; i < 10; i++) {
+            Veterinario veterinario = primerosDiezVeterinarios.get(i);
+            Tratamiento tratamiento = todosLosTratamientos.get(i);
+            tratamiento.setVeterinario(veterinario);
+            tratamientoRepository.save(tratamiento);
+        }
+
 
         //Asociar cliente con mascota
         Cliente asociar = clienteRepository.findById(1L).get();
