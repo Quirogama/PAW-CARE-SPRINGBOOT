@@ -47,6 +47,33 @@ public class DrogaServiceImpl implements DrogaService {
         drogaRepository.save(droga);
     }
 
+    @Override
+    public Integer getTotalVentas() {
+    List<Droga> drogas = cargarDrogasDesdeExcel();  // Carga las drogas desde Excel
+    int totalVentas = 0;
+    for (Droga droga : drogas) {
+        totalVentas += droga.getUnidadesVendidas();  // Sumar el total de unidades vendidas
+    }
+    return totalVentas;
+}
+
+
+
+
+    @Override
+    public Float getTotalGanancias() {
+    List<Droga> drogas = cargarDrogasDesdeExcel();  // Carga las drogas desde Excel
+    float totalGanancias = 0;
+    for (Droga droga : drogas) {
+        float gananciaPorUnidad = droga.getPrecioVenta() - droga.getPrecioCompra();
+        totalGanancias += gananciaPorUnidad * droga.getUnidadesVendidas();  // Calcular la ganancia por las unidades vendidas
+    }
+    return totalGanancias;
+}
+
+
+
+
     // Método para cargar drogas desde Excel
     public List<Droga> cargarDrogasDesdeExcel() {
         List<Droga> drogas = excelService.leerDatosDesdeExcel(); // Llama al método en ExcelService

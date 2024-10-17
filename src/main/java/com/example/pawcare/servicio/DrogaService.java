@@ -17,7 +17,9 @@ public interface DrogaService {
     public void deleteById(Long id);
     
     public void update(Droga droga);
+
+    Integer getTotalVentas();  // Método para obtener el total de ventas (unidades vendidas)
+    Float getTotalGanancias();  // Método para obtener el total de ganancias
     
-    // Agrega esta línea
     public List<Droga> cargarDrogasDesdeExcel(); // Método para cargar desde Excel
 }
