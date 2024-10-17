@@ -17,4 +17,5 @@ public interface MascotaService {
     public void update(Mascota mascota);
 
     public Long getTotalMascotas();
+    Long getCantidadMascotasActivas();
 }

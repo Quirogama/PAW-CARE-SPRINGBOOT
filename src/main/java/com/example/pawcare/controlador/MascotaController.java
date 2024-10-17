@@ -3,6 +3,7 @@ package com.example.pawcare.controlador;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,6 +31,12 @@ public class MascotaController {
     @GetMapping("/total")
     public Long getTotalMascotas() {
         return mascotaService.getTotalMascotas();
+    }
+
+    @GetMapping("/activas")
+    public ResponseEntity<Long> getCantidadMascotasActivas() {
+        Long cantidadMascotasActivas = mascotaService.getCantidadMascotasActivas();
+        return ResponseEntity.ok(cantidadMascotasActivas);
     }
     
     @GetMapping("/all")
