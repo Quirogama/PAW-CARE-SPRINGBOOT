@@ -20,7 +20,7 @@ import com.example.pawcare.servicio.VeterinarioService;
 
 @RestController
 @RequestMapping("/veterinario")
-@CrossOrigin(origins = "https://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 public class VeterinarioController {
     
     @Autowired
