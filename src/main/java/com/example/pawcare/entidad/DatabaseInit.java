@@ -203,15 +203,15 @@ public class DatabaseInit implements ApplicationRunner {
         mascotaRepository.save(new Mascota("Daisy", "5", "Dachshund", "Problemas dentales", "Recuperado", 4, "assets/img/perroGenerico.png"));
 
         //Veterinarios
-        veterinarioRepository.save(new Veterinario("Dr. House", 9990123, "Tratamientos Oculares", "assets/img/veterinarioGenerico.png", 3, "clave123"));
+        veterinarioRepository.save(new Veterinario("Dr. House", 9991234, "Tratamientos Oculares", "assets/img/veterinarioGenerico.png", 3, "clave123"));
         veterinarioRepository.save(new Veterinario("Dra. Lisa Cuddy", 9994567, "Medicina Interna", "assets/img/veterinarioGenerico.png", 5, "clave567"));
-        veterinarioRepository.save(new Veterinario("Dr. James Wilson", 9998901, "Oncología", "assets/img/veterinarioGenerico.png", 4, "clave901"));
+        veterinarioRepository.save(new Veterinario("Dr. James Wilson", 9998903, "Oncología", "assets/img/veterinarioGenerico.png", 4, "clave901"));
         veterinarioRepository.save(new Veterinario("Dr. Robert Chase", 9993456, "Cirugía", "assets/img/veterinarioGenerico.png", 7, "clave456"));
         veterinarioRepository.save(new Veterinario("Dra. Allison Cameron", 9997890, "Diagnóstico General", "assets/img/veterinarioGenerico.png", 6, "clave890"));
         veterinarioRepository.save(new Veterinario("Dr. Eric Foreman", 9992345, "Neurología", "assets/img/veterinarioGenerico.png", 8, "clave345"));
         veterinarioRepository.save(new Veterinario("Dr. Chris Taub", 9996789, "Cardiología", "assets/img/veterinarioGenerico.png", 5, "clave789"));
         veterinarioRepository.save(new Veterinario("Dra. Remy Hadley", 9990123, "Genética", "assets/img/veterinarioGenerico.png", 3, "clave123"));
-        veterinarioRepository.save(new Veterinario("Dr. Lawrence Kutner", 9994567, "Psiquiatría", "assets/img/veterinarioGenerico.png", 4, "clave567"));
+        veterinarioRepository.save(new Veterinario("Dr. Lawrence Kutner", 9994547, "Psiquiatría", "assets/img/veterinarioGenerico.png", 4, "clave567"));
         veterinarioRepository.save(new Veterinario("Dr. Jeffrey Cole", 9998901, "Medicina General", "assets/img/veterinarioGenerico.png", 2, "clave901"));
         veterinarioRepository.save(new Veterinario("Dr. Henry Dobson", 9992346, "Dermatología", "assets/img/veterinarioGenerico.png", 6, "clave346"));
         veterinarioRepository.save(new Veterinario("Dra. Amber Volakis", 9995679, "Anestesiología", "assets/img/veterinarioGenerico.png", 3, "clave679"));
