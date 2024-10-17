@@ -45,4 +45,10 @@ public class MascotaServiceImpl implements MascotaService {
         // TODO Auto-generated method stub
         mascotaRepository.save(mascota);
     }
+
+    // Implementación del método para obtener la cantidad total de mascotas
+    @Override
+    public Long getTotalMascotas() {
+        return mascotaRepository.count();
+    }
 }

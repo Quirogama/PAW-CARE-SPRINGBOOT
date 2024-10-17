@@ -26,6 +26,11 @@ public class MascotaController {
     
     @Autowired
     MascotaService mascotaService;
+
+    @GetMapping("/total")
+    public Long getTotalMascotas() {
+        return mascotaService.getTotalMascotas();
+    }
     
     @GetMapping("/all")
     public List<Mascota> mostrarMascotas() {

@@ -203,26 +203,26 @@ public class DatabaseInit implements ApplicationRunner {
         mascotaRepository.save(new Mascota("Daisy", "5", "Dachshund", "Problemas dentales", "Recuperado", 4, "assets/img/perroGenerico.png"));
 
         //Veterinarios
-        veterinarioRepository.save(new Veterinario("Dr. House", 9990123, "Tratamientos Oculares", "/img/veterinarioGenerico.png", 3, "clave123"));
-        veterinarioRepository.save(new Veterinario("Dra. Lisa Cuddy", 9994567, "Medicina Interna", "/img/veterinarioGenerico.png", 5, "clave567"));
-        veterinarioRepository.save(new Veterinario("Dr. James Wilson", 9998901, "Oncología", "/img/veterinarioGenerico.png", 4, "clave901"));
-        veterinarioRepository.save(new Veterinario("Dr. Robert Chase", 9993456, "Cirugía", "/img/veterinarioGenerico.png", 7, "clave456"));
-        veterinarioRepository.save(new Veterinario("Dra. Allison Cameron", 9997890, "Diagnóstico General", "/img/veterinarioGenerico.png", 6, "clave890"));
-        veterinarioRepository.save(new Veterinario("Dr. Eric Foreman", 9992345, "Neurología", "/img/veterinarioGenerico.png", 8, "clave345"));
-        veterinarioRepository.save(new Veterinario("Dr. Chris Taub", 9996789, "Cardiología", "/img/veterinarioGenerico.png", 5, "clave789"));
-        veterinarioRepository.save(new Veterinario("Dra. Remy Hadley", 9990123, "Genética", "/img/veterinarioGenerico.png", 3, "clave123"));
-        veterinarioRepository.save(new Veterinario("Dr. Lawrence Kutner", 9994567, "Psiquiatría", "/img/veterinarioGenerico.png", 4, "clave567"));
-        veterinarioRepository.save(new Veterinario("Dr. Jeffrey Cole", 9998901, "Medicina General", "/img/veterinarioGenerico.png", 2, "clave901"));
-        veterinarioRepository.save(new Veterinario("Dr. Henry Dobson", 9992346, "Dermatología", "/img/veterinarioGenerico.png", 6, "clave346"));
-        veterinarioRepository.save(new Veterinario("Dra. Amber Volakis", 9995679, "Anestesiología", "/img/veterinarioGenerico.png", 3, "clave679"));
-        veterinarioRepository.save(new Veterinario("Dra. Jessica Adams", 9998912, "Medicina de Urgencias", "/img/veterinarioGenerico.png", 4, "clave912"));
-        veterinarioRepository.save(new Veterinario("Dra. Chi Park", 9993457, "Neurocirugía", "/img/veterinarioGenerico.png", 5, "clave457"));
-        veterinarioRepository.save(new Veterinario("Dr. Gregory House", 9997891, "Nefrología", "/img/veterinarioGenerico.png", 9, "clave891"));
-        veterinarioRepository.save(new Veterinario("Dr. John Carter", 9992348, "Infectología", "/img/veterinarioGenerico.png", 7, "clave348"));
-        veterinarioRepository.save(new Veterinario("Dr. Peter Benton", 9995670, "Gastroenterología", "/img/veterinarioGenerico.png", 8, "clave670"));
-        veterinarioRepository.save(new Veterinario("Dra. Susan Lewis", 9998913, "Reumatología", "/img/veterinarioGenerico.png", 3, "clave913"));
-        veterinarioRepository.save(new Veterinario("Dr. Mark Greene", 9993458, "Pediatría", "/img/veterinarioGenerico.png", 6, "clave458"));
-        veterinarioRepository.save(new Veterinario("Dr. James Johnson", 9997892, "Cirugía Plástica", "/img/veterinarioGenerico.png", 7, "clave892"));
+        veterinarioRepository.save(new Veterinario("Dr. House", 9990123, "Tratamientos Oculares", "assets/img/veterinarioGenerico.png", 3, "clave123"));
+        veterinarioRepository.save(new Veterinario("Dra. Lisa Cuddy", 9994567, "Medicina Interna", "assets/img/veterinarioGenerico.png", 5, "clave567"));
+        veterinarioRepository.save(new Veterinario("Dr. James Wilson", 9998901, "Oncología", "assets/img/veterinarioGenerico.png", 4, "clave901"));
+        veterinarioRepository.save(new Veterinario("Dr. Robert Chase", 9993456, "Cirugía", "assets/img/veterinarioGenerico.png", 7, "clave456"));
+        veterinarioRepository.save(new Veterinario("Dra. Allison Cameron", 9997890, "Diagnóstico General", "assets/img/veterinarioGenerico.png", 6, "clave890"));
+        veterinarioRepository.save(new Veterinario("Dr. Eric Foreman", 9992345, "Neurología", "assets/img/veterinarioGenerico.png", 8, "clave345"));
+        veterinarioRepository.save(new Veterinario("Dr. Chris Taub", 9996789, "Cardiología", "assets/img/veterinarioGenerico.png", 5, "clave789"));
+        veterinarioRepository.save(new Veterinario("Dra. Remy Hadley", 9990123, "Genética", "assets/img/veterinarioGenerico.png", 3, "clave123"));
+        veterinarioRepository.save(new Veterinario("Dr. Lawrence Kutner", 9994567, "Psiquiatría", "assets/img/veterinarioGenerico.png", 4, "clave567"));
+        veterinarioRepository.save(new Veterinario("Dr. Jeffrey Cole", 9998901, "Medicina General", "assets/img/veterinarioGenerico.png", 2, "clave901"));
+        veterinarioRepository.save(new Veterinario("Dr. Henry Dobson", 9992346, "Dermatología", "assets/img/veterinarioGenerico.png", 6, "clave346"));
+        veterinarioRepository.save(new Veterinario("Dra. Amber Volakis", 9995679, "Anestesiología", "assets/img/veterinarioGenerico.png", 3, "clave679"));
+        veterinarioRepository.save(new Veterinario("Dra. Jessica Adams", 9998912, "Medicina de Urgencias", "assets/img/veterinarioGenerico.png", 4, "clave912"));
+        veterinarioRepository.save(new Veterinario("Dra. Chi Park", 9993457, "Neurocirugía", "assets/img/veterinarioGenerico.png", 5, "clave457"));
+        veterinarioRepository.save(new Veterinario("Dr. Gregory House", 9997891, "Nefrología", "assets/img/veterinarioGenerico.png", 9, "clave891"));
+        veterinarioRepository.save(new Veterinario("Dr. John Carter", 9992348, "Infectología", "assets/img/veterinarioGenerico.png", 7, "clave348"));
+        veterinarioRepository.save(new Veterinario("Dr. Peter Benton", 9995670, "Gastroenterología", "assets/img/veterinarioGenerico.png", 8, "clave670"));
+        veterinarioRepository.save(new Veterinario("Dra. Susan Lewis", 9998913, "Reumatología", "assets/img/veterinarioGenerico.png", 3, "clave913"));
+        veterinarioRepository.save(new Veterinario("Dr. Mark Greene", 9993458, "Pediatría", "assets/img/veterinarioGenerico.png", 6, "clave458"));
+        veterinarioRepository.save(new Veterinario("Dr. James Johnson", 9997892, "Cirugía Plástica", "assets/img/veterinarioGenerico.png", 7, "clave892"));
         
 
         //Tratamientos
