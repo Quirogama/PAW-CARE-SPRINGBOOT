@@ -51,4 +51,9 @@ public class MascotaServiceImpl implements MascotaService {
     public Long getTotalMascotas() {
         return mascotaRepository.count();
     }
+
+    @Override
+    public Long getCantidadMascotasActivas() {
+        return mascotaRepository.countMascotasActivas();
+    }
 }
