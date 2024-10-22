@@ -11,6 +11,8 @@ import com.example.pawcare.entidad.Droga;
 public interface DrogaRepository extends JpaRepository<Droga, Long> {
     List<Droga> findByMascotaId(Long mascotaId);
 
+    Droga findByNombre(String nombre);
+    
     // Sumar el número total de unidades vendidas de todas las drogas (Ventas totales)
     @Query("SELECT SUM(d.unidadesVendidas) FROM Droga d")
     Integer getTotalVentas();  // Retorna el número total de unidades vendidas

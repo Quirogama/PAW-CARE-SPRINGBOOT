@@ -15,4 +15,10 @@ public interface MascotaRepository extends JpaRepository<Mascota, Long> {
 
     @Query("SELECT COUNT(m) FROM Mascota m WHERE m.estado = 'En tratamiento'")
     Long countMascotasActivas();
+
+    @Query("SELECT COUNT(m) FROM Mascota m WHERE m.estado = 'En observación'")
+    Long countMascotasEnObservacion();
+
+    @Query("SELECT COUNT(m) FROM Mascota m WHERE m.estado = 'Recuperado'")
+    Long countMascotasRecuperadas();
 }

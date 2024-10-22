@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -37,5 +38,16 @@ public class DrogaController {
     @GetMapping("/all")
     public List<Droga> mostrarTodasDrogas() {
         return drogaService.cargarDrogasDesdeExcel(); // Llama al método que carga desde Excel
+    }
+
+    @GetMapping("/{id}")
+    public Droga mostrarDrogaId(@PathVariable("id") Long id) {
+        Droga droga = drogaService.SearchById(id);
+        return droga;
+    }
+
+    @GetMapping("/{nombre}")
+    public Droga drogaNombre(@PathVariable("nombre") String nombre) {
+        return drogaService.findByName(nombre);
     }
 }

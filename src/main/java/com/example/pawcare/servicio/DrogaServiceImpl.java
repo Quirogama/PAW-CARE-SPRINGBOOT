@@ -48,6 +48,11 @@ public class DrogaServiceImpl implements DrogaService {
     }
 
     @Override
+    public Droga findByName(String name){
+        return drogaRepository.findByNombre(name);
+    }
+
+    @Override
     public Integer getTotalVentas() {
     List<Droga> drogas = cargarDrogasDesdeExcel();  // Carga las drogas desde Excel
     int totalVentas = 0;
