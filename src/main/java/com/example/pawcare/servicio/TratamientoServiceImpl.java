@@ -40,6 +40,12 @@ public class TratamientoServiceImpl implements TratamientoService {
         tratamientoRepository.save(droga);
     }
 
+    @Override
+    public Tratamiento agregar(Tratamiento tratamiento){
+        return tratamientoRepository.save(tratamiento);
+    }
+
+
     // Nuevo método para obtener la cantidad de tratamientos del último mes
     @Override
     public Long getCantidadTratamientosUltimoMes() {
