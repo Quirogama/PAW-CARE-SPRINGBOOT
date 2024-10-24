@@ -50,13 +50,13 @@ public class TratamientoServiceImpl implements TratamientoService {
     @Override
     public Long getCantidadTratamientosUltimoMes() {
         // Obtener la fecha actual y calcular la fecha de un mes atrás
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd");
         Calendar calendar = Calendar.getInstance();
 
         String endDate = sdf.format(calendar.getTime());  // Fecha actual
         calendar.add(Calendar.MONTH, -1);                 // Un mes antes
         String startDate = sdf.format(calendar.getTime()); // Fecha de inicio
-
+        
         return tratamientoRepository.countTratamientosByFechaBetween(startDate, endDate);
     }
 }

@@ -3,6 +3,8 @@ package com.example.pawcare.controlador;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -40,10 +42,12 @@ public class MascotaController {
     }
     
     @GetMapping("/all")
-    public List<Mascota> mostrarMascotas() {
+    public ResponseEntity<List<Mascota>> mostrarMascotas() {
         //model.addAttribute("mascotas", mascotaService.SearchAll());
         //return "listado_mascotas";
-        return mascotaService.SearchAll();
+        List<Mascota> mascotas = mascotaService.SearchAll();
+        ResponseEntity<List<Mascota>> response = new ResponseEntity<>(mascotas, HttpStatus.OK);
+        return response;
     }
 
     @GetMapping("/{id}")
@@ -85,14 +89,17 @@ public class MascotaController {
     }
 
     @PostMapping("/registro")
-    public void agregarMascota(@RequestBody Mascota mascota) {
+    public ResponseEntity<Mascota> agregarMascota(@RequestBody Mascota mascota) {
         mascotaService.add(mascota);
+        return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(mascota);
     }
-    
+
     
     @DeleteMapping("/eliminar/{id}")
-    public void borrarMascota(@PathVariable("id") Long id) {
+    public ResponseEntity<String> borrarMascota(@PathVariable("id") Long id) {
         mascotaService.deleteById(id);
+
+        return new ResponseEntity<>("Mascota eliminada con éxito", HttpStatus.NO_CONTENT);
     }
 
 
@@ -103,13 +110,20 @@ public class MascotaController {
     }
 
     @PutMapping("/modificar/{id}")
-    public void actualizarMascota(@PathVariable Long id, @RequestBody Mascota mascota) {
+public ResponseEntity<String> actualizarMascota(@PathVariable Long id, @RequestBody Mascota mascota) {
     Mascota mascotaExistente = mascotaService.SearchById(id);
+    if (mascotaExistente == null) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Mascota no encontrada");
+    }
+    
     if (mascotaExistente.getCliente() != null) {
         mascota.setCliente(mascotaExistente.getCliente());
     }
+
     mascotaService.update(mascota);
+    return ResponseEntity.ok("Mascota actualizada exitosamente");
 }
+
 
 
 }

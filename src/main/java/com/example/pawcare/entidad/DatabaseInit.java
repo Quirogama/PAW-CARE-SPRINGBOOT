@@ -1,6 +1,7 @@
 
 package com.example.pawcare.entidad;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -228,17 +229,16 @@ public class DatabaseInit implements ApplicationRunner {
         
 
         //Tratamientos
-        tratamientoRepository.save(new Tratamiento("10/20/2024", "Desparasitación interna y externa"));
-        tratamientoRepository.save(new Tratamiento("10/21/2024", "Vacunación contra la rabia"));
-        tratamientoRepository.save(new Tratamiento("10/22/2024", "Limpieza dental y pulido"));
-        tratamientoRepository.save(new Tratamiento("10/23/2024", "Aplicación de antipulgas y garrapatas"));
-        tratamientoRepository.save(new Tratamiento("10/20/2024", "Tratamiento para infecciones oculares"));
-        tratamientoRepository.save(new Tratamiento("10/24/2024", "Tratamiento para problemas de piel"));
-        tratamientoRepository.save(new Tratamiento("10/21/2024", "Control de peso y dieta"));
-        tratamientoRepository.save(new Tratamiento("10/22/2024", "Cirugía de esterilización"));
-        tratamientoRepository.save(new Tratamiento("10/23/2024", "Tratamiento para artritis"));
-        tratamientoRepository.save(new Tratamiento("10/24/2024", "Control de enfermedades cardíacas"));
-
+        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-10-01"), "Desparasitación interna y externa"));
+        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-10-22"), "Vacunación contra la rabia"));
+        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-10-03"), "Limpieza dental y pulido"));
+        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-10-04"), "Aplicación de antipulgas y garrapatas"));
+        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-10-05"), "Tratamiento para infecciones oculares"));   
+        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-10-06"), "Tratamiento para huesos rotos"));
+        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-10-07"), "Tratamiento para infecciones"));
+        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-10-08"), "Tratamiento para afectaciones generales"));
+        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-10-09"), "Tratamiento para cortes"));
+        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-10-10"), "Tratamiento para enfermedades terminales"));
 
         //Drogas
         drogaRepository.save(new Droga("Paracetamol", 2,2,2,5));

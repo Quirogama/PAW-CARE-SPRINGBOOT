@@ -14,10 +14,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import com.example.pawcare.entidad.Cliente;
 import com.example.pawcare.entidad.Mascota;
 import com.example.pawcare.repositorio.ClienteRepository;
-import com.example.pawcare.repositorio.DrogaRepository;
 import com.example.pawcare.repositorio.MascotaRepository;
-import com.example.pawcare.repositorio.TratamientoRepository;
-import com.example.pawcare.repositorio.VeterinarioRepository;
 
 @DataJpaTest
 @ExtendWith(SpringExtension.class)
@@ -26,17 +23,7 @@ public class MascotaRepositoryTests {
     private MascotaRepository mascotaRepository;
 
     @Autowired
-    private TratamientoRepository tratamientoRepository;
-
-    @Autowired
-    private DrogaRepository drogaRepository;
-
-    @Autowired
     private ClienteRepository clienteRepository;
-
-    @Autowired
-    private VeterinarioRepository veterinarioRepository;
-
     @BeforeEach
     void setUp() {
         clienteRepository.save(new Cliente("Juan Pérez", "juan.perez@example.com", 12345678, 87654321, "clave123"));

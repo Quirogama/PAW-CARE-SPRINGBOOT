@@ -1,5 +1,6 @@
 package com.example.pawcare.service;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 import org.assertj.core.api.Assertions;
@@ -32,7 +33,7 @@ public class TratamientoServiceTestMock {
 
     @Test
     public void TratamientoService_addTratamiento_Tratamiento() {
-        Tratamiento tratamientoPrueba = new Tratamiento("10/20/2024", "Desparasitación interna y externa");
+        Tratamiento tratamientoPrueba = new Tratamiento(LocalDate.parse("2024-10-20"),  "Desparasitación interna y externa");
         when(tratamientoRepository.save(tratamientoPrueba)).thenReturn(tratamientoPrueba);
 
         Tratamiento tratamientoNuevo = tratamientoService.agregar(tratamientoPrueba);
@@ -44,13 +45,25 @@ public class TratamientoServiceTestMock {
     public void TratamientoService_FindById_Tratamiento() {
         Long id = 1L;
 
-        Tratamiento tratamiento = new Tratamiento("10/20/2024", "Desparasitación interna y externa");
+        Tratamiento tratamiento = new Tratamiento(1L,LocalDate.parse("2024-10-20"), "Desparasitación interna y externa");
         when(tratamientoRepository.findById(1L)).thenReturn(
             Optional.of(tratamiento));
 
         Tratamiento tratamientoRecibido = tratamientoService.SearchById(id);
 
         Assertions.assertThat(tratamientoRecibido).isNotNull();
-        Assertions.assertThat(tratamientoRecibido.getId()).isEqualTo(1);
+        Assertions.assertThat(tratamientoRecibido.getId()).isEqualTo(id);
     }
+
+    /*
+     @Test
+    public void TratamientoService_FindCantTratamientosUltimoMes_Long(){
+        Long CantTratamientos = 5L;
+        
+        when(tratamientoRepository.countTratamientosByFechaBetweenALT(LocalDate.now().minusMonths(1), LocalDate.now())).thenReturn(CantTratamientos);
+
+        Assertions.assertThat(tratamientoService.getCantidadTratamientosUltimoMes()).isNotNull();
+        Assertions.assertThat(tratamientoService.getCantidadTratamientosUltimoMes()).isEqualTo(CantTratamientos);
+    }
+     */
 }

@@ -1,5 +1,6 @@
 package com.example.pawcare.service;
 
+import java.time.LocalDate;
 import java.util.Collection;
 
 import org.assertj.core.api.Assertions;
@@ -23,11 +24,20 @@ public class TratamientoServiceTestNaive {
 
     @BeforeEach
     void setUp(){
-        tratamientoRepository.save(new Tratamiento("10/20/2024", "Desparasitación interna y externa"));
-        tratamientoRepository.save(new Tratamiento("10/21/2024", "Vacunación contra la rabia"));
-        tratamientoRepository.save(new Tratamiento("10/22/2024", "Limpieza dental y pulido"));
-        tratamientoRepository.save(new Tratamiento("10/23/2024", "Aplicación de antipulgas y garrapatas"));
-        tratamientoRepository.save(new Tratamiento("10/20/2024", "Tratamiento para infecciones oculares"));
+        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-10-20"), "Desparasitación interna y externa"));
+        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-10-21"),  "Vacunación contra la rabia"));
+        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-10-22"), "Limpieza dental y pulido"));
+        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-10-23"), "Aplicación de antipulgas y garrapatas"));
+        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-10-24"), "Tratamiento para infecciones oculares"));
+    }
+
+    @Test
+    public void TratamientoServiceNaive_addTratamiento_Tratamiento(){
+        Tratamiento tratamientoPrueba = new Tratamiento(LocalDate.parse("2024-10-20"), "Desparasitación interna y externa");
+        Tratamiento nuevoTratamiento = tratamientoService.agregar(tratamientoPrueba);
+
+        Assertions.assertThat(nuevoTratamiento).isNotNull();
+        Assertions.assertThat(nuevoTratamiento.getId()).isEqualTo(16L);
     }
 
     @Test
@@ -43,8 +53,8 @@ public class TratamientoServiceTestNaive {
     @Test
     public void TratamientoService_createTratamiento_Tratamiento() {
 
-        Tratamiento tratamiento = new Tratamiento("10/20/2024", "Desparasitación interna y externa");
-        Tratamiento tratamiento2 = new Tratamiento("10/20/2024", "Otro");
+        Tratamiento tratamiento = new Tratamiento(LocalDate.parse("2024-10-20"),  "Desparasitación interna y externa");
+        Tratamiento tratamiento2 = new Tratamiento(LocalDate.parse("2024-10-20"), "Otro");
 
         tratamientoService.add(tratamiento);
         tratamientoService.add(tratamiento2);
@@ -60,5 +70,4 @@ public class TratamientoServiceTestNaive {
         Assertions.assertThat(tratamientos).isNotNull();
         Assertions.assertThat(tratamientos).size().isEqualTo(15); 
     }
-
 }

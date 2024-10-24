@@ -53,6 +53,11 @@ public class MascotaServiceImpl implements MascotaService {
     }
 
     @Override
+    public Mascota agregarMascota(Mascota mascota) {
+        return mascotaRepository.save(mascota);
+    }
+
+    @Override
     public Long getCantidadMascotasActivas() {
         return mascotaRepository.countMascotasActivas();
     }

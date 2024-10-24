@@ -1,4 +1,5 @@
 package com.example.pawcare.entidad;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class Tratamiento {
     private Long id;
 
     private String descripcion;
-    private String fecha;
+    private LocalDate fecha;
 
     @ManyToOne
     private Droga droga;
@@ -30,7 +31,7 @@ public class Tratamiento {
     @OneToMany(mappedBy = "tratamiento", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Mascota> mascotas = new ArrayList<>();
 
-    public Tratamiento(Long id, String fecha, Droga droga, Veterinario veterinario) {
+    public Tratamiento(Long id, LocalDate fecha, Droga droga, Veterinario veterinario) {
         this.id = id;
         this.fecha = fecha;
         this.droga = droga;
@@ -40,7 +41,13 @@ public class Tratamiento {
     public Tratamiento() {
     }
 
-    public Tratamiento(String fecha, String descripcion) {
+    public Tratamiento(Long id, LocalDate fecha, String descripcion) {
+        this.id = id;
+        this.fecha = fecha;
+        this.descripcion = descripcion;
+    }
+
+    public Tratamiento(LocalDate fecha, String descripcion) {
         this.fecha = fecha;
         this.descripcion = descripcion;
     }
@@ -53,11 +60,12 @@ public class Tratamiento {
         this.id = id;
     }
 
-    public String getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 
