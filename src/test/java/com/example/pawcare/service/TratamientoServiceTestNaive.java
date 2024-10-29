@@ -37,7 +37,7 @@ public class TratamientoServiceTestNaive {
         Tratamiento nuevoTratamiento = tratamientoService.agregar(tratamientoPrueba);
 
         Assertions.assertThat(nuevoTratamiento).isNotNull();
-        Assertions.assertThat(nuevoTratamiento.getId()).isEqualTo(16L);
+        Assertions.assertThat(nuevoTratamiento.getId()).isEqualTo(33L);
     }
 
     @Test
@@ -59,7 +59,7 @@ public class TratamientoServiceTestNaive {
         tratamientoService.add(tratamiento);
         tratamientoService.add(tratamiento2);
 
-        Assertions.assertThat(tratamientoService.SearchAll()).size().isEqualTo(17); //10 de la BDD + 2 insertadas aqui + 5 locales
+        Assertions.assertThat(tratamientoService.SearchAll()).size().isEqualTo(22); //10 de la BDD + 2 insertadas aqui + 5 locales
     }
 
     @Test

@@ -17,9 +17,43 @@ public class TratamientoController {
     @Autowired
     private TratamientoService tratamientoService;
 
-    @GetMapping("/cantidadUltimoMes")
+    /*
+     @GetMapping("/cantidadUltimoMes")
     public ResponseEntity<Long> getCantidadTratamientosUltimoMes() {
         Long cantidadTratamientos = tratamientoService.getCantidadTratamientosUltimoMes();
         return ResponseEntity.ok(cantidadTratamientos);
+    }etMapping("/cantidadUltimoMes")
+    pub
+}   Long cantidadTratamientos = tratamientoService.getCantidadTratamientosUltimoMes();
+        return ResponseEntity.ok(cantidadTratamientos);
+    }etMapping("/cantidadUltimoMes")
+    pub
+}   Long cantidadTratamientos = tratamientoService.getCantidadTratamientosUltimoMes();
+        return ResponseEntity.ok(cantidadTratamientos);
+    }etMapping("/cantidadUltimoMes")
+    pub
+}   Long cantidadTratamientos = tratamientoService.getCantidadTratamientosUltimoMes();
+        return ResponseEntity.ok(cantidadTratamientos);
+    }etMapping("/cantidadUltimoMes")
+    pub
+}   Long cantidadTratamientos = tratamientoService.getCantidadTratamientosUltimoMes();
+        return ResponseEntity.ok(cantidadTratamientos);
+    }etMapping("/cantidadUltimoMes")
+    pub
+}   Long cantidadTratamientos = tratamientoService.getCantidadTratamientosUltimoMes();
+        return ResponseEntity.ok(cantidadTratamientos);
+    }etMapping("/cantidadUltimoMes")
+    pub
+}   Long cantidadTratamientos = tratamientoService.getCantidadTratamientosUltimoMes();
+        return ResponseEntity.ok(cantidadTratamientos);
+    }etMapping("/cantidadUltimoMes")
+    pub
+}   Long cantidadTratamientos = tratamientoService.getCantidadTratamientosUltimoMes();
+        return ResponseEntity.ok(cantidadTratamientos);
+    }etMapping("/cantidadUltimoMes")
+    pub
+}   Long cantidadTratamientos = tratamientoService.getCantidadTratamientosUltimoMes();
+        return ResponseEntity.ok(cantidadTratamientos);
     }
+     */
 }

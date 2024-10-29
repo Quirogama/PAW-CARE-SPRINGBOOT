@@ -31,8 +31,9 @@ public class MascotaController {
     MascotaService mascotaService;
 
     @GetMapping("/total")
-    public Long getTotalMascotas() {
-        return mascotaService.getTotalMascotas();
+    public ResponseEntity<Long> getTotalMascotas() {
+        Long totalMascotas = mascotaService.getTotalMascotas();
+        return ResponseEntity.ok(totalMascotas);
     }
 
     @GetMapping("/activas")

@@ -45,18 +45,5 @@ public class TratamientoServiceImpl implements TratamientoService {
         return tratamientoRepository.save(tratamiento);
     }
 
-
     // Nuevo método para obtener la cantidad de tratamientos del último mes
-    @Override
-    public Long getCantidadTratamientosUltimoMes() {
-        // Obtener la fecha actual y calcular la fecha de un mes atrás
-        SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd");
-        Calendar calendar = Calendar.getInstance();
-
-        String endDate = sdf.format(calendar.getTime());  // Fecha actual
-        calendar.add(Calendar.MONTH, -1);                 // Un mes antes
-        String startDate = sdf.format(calendar.getTime()); // Fecha de inicio
-        
-        return tratamientoRepository.countTratamientosByFechaBetween(startDate, endDate);
-    }
 }

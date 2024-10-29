@@ -126,6 +126,20 @@ public class MascotaControllerTests {
     }
 
     @Test
+    public void MascotaController_numeroTotal_Long() throws Exception {
+        when(mascotaService.getTotalMascotas()).thenReturn(
+            5L
+        );
+
+        ResultActions response = mockMvc.perform(
+                get("/mascota/total"));
+
+        response.andExpect(status().isOk())
+        .andExpect(content().contentType("application/json"))
+        .andExpect(jsonPath("$").value(5));
+    }
+
+    @Test
     public void MascotaController_Delete() throws Exception {
         ResultActions response = mockMvc.perform(
                 delete("/mascota/eliminar/1"));
@@ -147,6 +161,8 @@ public class MascotaControllerTests {
     
         response.andExpect(status().isNotFound());
     } 
+
+
 
     @Test
     public void MascotaController_Update() throws Exception {
