@@ -42,7 +42,7 @@ public class UseCaseTest {
     }
 
     @Test
-    public void HomeTest_addMascota_listSize() {
+    public void CaseTest_addMascota_listSize() {
 
         // Navegar a la página de inicio
         driver.get("http://localhost:4200");
@@ -56,8 +56,8 @@ public class UseCaseTest {
         WebElement inputCedula1 = driver.findElement(By.id("cedula"));
         inputCedula1.sendKeys("77");
 
-        WebElement inputClave = driver.findElement(By.id("clave"));
-        inputClave.sendKeys("clave777");
+        WebElement inputClave1 = driver.findElement(By.id("clave"));
+        inputClave1.sendKeys("clave666");
 
         
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("btnIngresar")));
@@ -68,6 +68,10 @@ public class UseCaseTest {
         WebElement inputCedula2 = driver.findElement(By.id("cedula"));
         inputCedula2.clear();
         inputCedula2.sendKeys("777");
+
+        WebElement inputClave2 = driver.findElement(By.id("clave"));
+        inputClave2.clear();
+        inputClave2.sendKeys("clave777");
 
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("btnIngresar")));
         WebElement btnIngresar2 = driver.findElement(By.id("btnIngresar"));
@@ -136,6 +140,20 @@ public class UseCaseTest {
         WebElement btnCrearMascota = driver.findElement(By.id("btnCrearMascota"));
         btnCrearMascota.click();
 
-        
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("btnLogoutHeader")));
+        WebElement btnLogoutHeader = driver.findElement(By.id("btnLogoutHeader"));
+        btnLogoutHeader.click();
+
+        WebElement inputCedula3 = driver.findElement(By.id("cedula"));
+        inputCedula3.clear();
+        inputCedula3.sendKeys("777");
+
+        WebElement inputClave3 = driver.findElement(By.id("clave"));
+        inputClave3.sendKeys("clave777");
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("btnIngresar")));
+        WebElement btnIngresar3 = driver.findElement(By.id("btnIngresar"));
+        btnIngresar3.click();
+
     }
 }
