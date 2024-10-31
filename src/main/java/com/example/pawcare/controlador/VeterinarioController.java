@@ -19,6 +19,7 @@ import com.example.pawcare.entidad.Tratamiento;
 import com.example.pawcare.entidad.Veterinario;
 import com.example.pawcare.servicio.VeterinarioService;
 
+
 @RestController
 @RequestMapping("/veterinario")
 @CrossOrigin(origins = "http://localhost:4200")
@@ -81,5 +82,4 @@ public class VeterinarioController {
     public List<Tratamiento> tratamientosVeterinario(@PathVariable("id") Long id){
         return veterinarioService.SearchById(id).getTratamientos();
     }
-
 }

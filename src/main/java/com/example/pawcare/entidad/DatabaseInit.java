@@ -16,6 +16,7 @@ import com.example.pawcare.repositorio.DrogaRepository;
 import com.example.pawcare.repositorio.MascotaRepository;
 import com.example.pawcare.repositorio.TratamientoRepository;
 import com.example.pawcare.repositorio.VeterinarioRepository;
+import com.example.pawcare.servicio.ExcelService;
 
 import jakarta.transaction.Transactional;
 
@@ -40,6 +41,9 @@ public class DatabaseInit implements ApplicationRunner {
 
     @Autowired
     TratamientoRepository tratamientoRepository;
+
+    @Autowired
+    ExcelService excelService;
 
 
     @Override
@@ -241,9 +245,7 @@ public class DatabaseInit implements ApplicationRunner {
         tratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-10-10"), "Tratamiento para enfermedades terminales"));
 
         //Drogas
-        drogaRepository.save(new Droga("Paracetamol", 2,2,2,5));
-
-
+        //excelService.uploadCsv("excel/MEDICAMENTOS_VETERINARIA.xlsx");
 
         //Asociar veterinario con tratamiento
         
@@ -261,10 +263,32 @@ public class DatabaseInit implements ApplicationRunner {
             }
         }
         
+       int CANTIDAD_TRATAMIENTOS = 10;
+       int CANTIDAD_DROGAS_ASIGNAR = 10;
+
+
+        //Asociar droga con Tratamiento
+        /*
+          
+         for (Tratamiento tratamiento : tratamientoRepository.findAll()) {
+            for (int i = 0; i < CANTIDAD_DROGAS_ASIGNAR; i++) {
+                int random = ThreadLocalRandom.current().nextInt(1, CANTIDAD_TRATAMIENTOS+1);
+                System.out.println("NUMERO RANDOM: " + random + "DE: " + tratamiento.getId());
+                Long search = Long.valueOf(random);
+                System.out.println("SEARCH: " + search);
+                Droga droga = drogaRepository.findById(search).get();
+                droga.setTratamiento(tratamiento);
+                drogaRepository.save(droga);
+            }
+        }
+
+         */
+        
+
+
+
 
         //Asociar tratamiento con Mascota
-        
-        int CANTIDAD_TRATAMIENTOS = 10;
         int CANTIDAD_TRATAMIENTOS_ASIGNAR = 1;
         for (Mascota mascota : mascotaRepository.findAll()) {
             for (int i = 0; i < CANTIDAD_TRATAMIENTOS_ASIGNAR; i++) {
@@ -310,6 +334,8 @@ public class DatabaseInit implements ApplicationRunner {
                 mascotaRepository.save(mascota);
             }
         }
+
+
         
     }
 }

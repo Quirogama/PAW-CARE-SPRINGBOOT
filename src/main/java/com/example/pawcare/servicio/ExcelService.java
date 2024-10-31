@@ -9,13 +9,19 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import com.example.pawcare.entidad.Droga;
+import com.example.pawcare.repositorio.DrogaRepository;
 
 @Service
 public class ExcelService {
+
+    @Autowired
+    DrogaRepository drogaRepository;
 
     public List<Droga> leerDatosDesdeExcel() {
         List<Droga> drogas = new ArrayList<>();
@@ -40,6 +46,7 @@ public class ExcelService {
     
                 // Crear una instancia de la entidad Droga y agregarla a la lista
                 Droga droga = new Droga(nombre, precioCompra, precioVenta, unidadesDisp, unidadesVendidas);
+                drogaRepository.save(droga);
                 drogas.add(droga);
             }
     
@@ -51,5 +58,22 @@ public class ExcelService {
         }
     
         return drogas;
+    }
+
+    public void guardarEnRepositorio() {
+        List<Droga> drogas = leerDatosDesdeExcel();
+        for (Droga droga : drogas) {
+            drogaRepository.save(droga);
+            System.out.println("\n\nDroga guardada: " + droga);
+        }
+    }
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+    
+    public void uploadCsv(String csvPath) {
+        String sql = "INSERT INTO DROGA (ID, NOMBRE, PRECIO_VENTA, PRECIO_COMPRA, UNIDADES_DISPONIBLES, UNIDADES_VENDIDAS) " +
+                     "SELECT * FROM CSVREAD('" + csvPath + "')";
+        jdbcTemplate.execute(sql);
     }
 }

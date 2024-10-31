@@ -103,4 +103,8 @@ public class Droga {
     public void setTratamientos(List<Tratamiento> tratamientos) {
         this.tratamientos = tratamientos;
     }
+
+    public void setTratamiento(Tratamiento tratamiento) {
+        this.tratamientos.add(tratamiento);
+    }
 }

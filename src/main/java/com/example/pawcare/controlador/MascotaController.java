@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.pawcare.entidad.Cliente;
 import com.example.pawcare.entidad.Mascota;
+import com.example.pawcare.servicio.ClienteService;
 import com.example.pawcare.servicio.MascotaService;
 
 
@@ -29,6 +31,9 @@ public class MascotaController {
     
     @Autowired
     MascotaService mascotaService;
+
+    @Autowired
+    ClienteService clienteService;
 
     @GetMapping("/total")
     public ResponseEntity<Long> getTotalMascotas() {
@@ -93,6 +98,15 @@ public class MascotaController {
     public ResponseEntity<Mascota> agregarMascota(@RequestBody Mascota mascota) {
         mascotaService.add(mascota);
         return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(mascota);
+    }
+
+    @PostMapping("/agregar/{cedula}")
+    public ResponseEntity<Mascota> agregarMascota(@PathVariable("cedula") int cedula, @RequestBody Mascota mascota) {
+        Cliente cliente = clienteService.SearchByCedula(cedula);
+        System.out.println("\n\n\nNOMBRE CLIENTE: "+cliente.getNombre());
+        mascota.setCliente(cliente);
+        mascotaService.add(mascota);
+        return new ResponseEntity<>(mascota, HttpStatus.CREATED);
     }
 
     
