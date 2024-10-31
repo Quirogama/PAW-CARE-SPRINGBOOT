@@ -28,6 +28,7 @@ public class Tratamiento {
     @JsonIgnore
     private Veterinario veterinario;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "tratamiento", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Mascota> mascotas = new ArrayList<>();
 
@@ -91,6 +92,10 @@ public class Tratamiento {
 
     public void setMascotas(List<Mascota> mascotas) {
         this.mascotas = mascotas;
+    }
+
+    public void setMascota(Mascota mascota){
+        this.mascotas.add(mascota);
     }
 
     public String getDescripcion() {

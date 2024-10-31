@@ -37,7 +37,7 @@ public class DrogaController {
 
     @GetMapping("/all")
     public List<Droga> mostrarTodasDrogas() {
-        return drogaService.cargarDrogasDesdeExcel(); // Llama al método que carga desde Excel
+        return drogaService.SearchAll();
     }
 
     @GetMapping("/{id}")

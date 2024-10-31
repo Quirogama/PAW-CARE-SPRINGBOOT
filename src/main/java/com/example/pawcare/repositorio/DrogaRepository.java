@@ -9,7 +9,6 @@ import com.example.pawcare.entidad.Droga;
 
 @Repository
 public interface DrogaRepository extends JpaRepository<Droga, Long> {
-    List<Droga> findByMascotaId(Long mascotaId);
 
     Droga findByNombre(String nombre);
     

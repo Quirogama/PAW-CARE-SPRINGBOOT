@@ -245,7 +245,8 @@ public class DatabaseInit implements ApplicationRunner {
         tratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-10-10"), "Tratamiento para enfermedades terminales"));
 
         //Drogas
-        //excelService.uploadCsv("excel/MEDICAMENTOS_VETERINARIA.xlsx");
+        //excelService.uploadCsv("resources/excel/MEDICAMENTOS_VETERINARIA.xlsx");
+        excelService.guardarEnRepositorio();
 
         //Asociar veterinario con tratamiento
         
@@ -268,37 +269,55 @@ public class DatabaseInit implements ApplicationRunner {
 
 
         //Asociar droga con Tratamiento
-        /*
-          
-         for (Tratamiento tratamiento : tratamientoRepository.findAll()) {
-            for (int i = 0; i < CANTIDAD_DROGAS_ASIGNAR; i++) {
-                int random = ThreadLocalRandom.current().nextInt(1, CANTIDAD_TRATAMIENTOS+1);
-                System.out.println("NUMERO RANDOM: " + random + "DE: " + tratamiento.getId());
-                Long search = Long.valueOf(random);
-                System.out.println("SEARCH: " + search);
-                Droga droga = drogaRepository.findById(search).get();
-                droga.setTratamiento(tratamiento);
-                drogaRepository.save(droga);
-            }
-        }
-
-         */
         
+          
+        // Asignar las 10 primeras drogas a los 10 primeros tratamientos
+        List<Droga> primerasDiezDrogas = drogaRepository.findAll();
+        List<Tratamiento> primerosDiezTratamientos = tratamientoRepository.findAll();
 
+        primerosDiezTratamientos.get(1).setDroga(primerasDiezDrogas.get(1));
+        tratamientoRepository.save(primerosDiezTratamientos.get(1));
 
+        primerosDiezTratamientos.get(2).setDroga(primerasDiezDrogas.get(2));
+        tratamientoRepository.save(primerosDiezTratamientos.get(2));
 
+        primerosDiezTratamientos.get(3).setDroga(primerasDiezDrogas.get(3));
+        tratamientoRepository.save(primerosDiezTratamientos.get(3));
+
+        primerosDiezTratamientos.get(4).setDroga(primerasDiezDrogas.get(4));
+        tratamientoRepository.save(primerosDiezTratamientos.get(4));
+
+        primerosDiezTratamientos.get(5).setDroga(primerasDiezDrogas.get(5));
+        tratamientoRepository.save(primerosDiezTratamientos.get(5));
+
+        primerosDiezTratamientos.get(6).setDroga(primerasDiezDrogas.get(6));
+        tratamientoRepository.save(primerosDiezTratamientos.get(6));
+
+        primerosDiezTratamientos.get(7).setDroga(primerasDiezDrogas.get(7));
+        tratamientoRepository.save(primerosDiezTratamientos.get(7));
+
+        primerosDiezTratamientos.get(8).setDroga(primerasDiezDrogas.get(8));
+        tratamientoRepository.save(primerosDiezTratamientos.get(8));
+
+        primerosDiezTratamientos.get(9).setDroga(primerasDiezDrogas.get(9));
+        tratamientoRepository.save(primerosDiezTratamientos.get(9));
+
+        primerosDiezTratamientos.get(0).setDroga(primerasDiezDrogas.get(0));
+        tratamientoRepository.save(primerosDiezTratamientos.get(0));
 
         //Asociar tratamiento con Mascota
         int CANTIDAD_TRATAMIENTOS_ASIGNAR = 1;
         for (Mascota mascota : mascotaRepository.findAll()) {
-            for (int i = 0; i < CANTIDAD_TRATAMIENTOS_ASIGNAR; i++) {
-                int random = ThreadLocalRandom.current().nextInt(1, CANTIDAD_TRATAMIENTOS+1);
-                System.out.println("NUMERO RANDOM: " + random + "DE: " + mascota.getId());
-                Long search = Long.valueOf(random);
-                System.out.println("SEARCH: " + search);
-                Tratamiento tratamiento = tratamientoRepository.findById(search).get();
-                mascota.setTratamiento(tratamiento);
-                mascotaRepository.save(mascota);
+            if (mascota.getEstado().equals("En tratamiento")) {
+                for (int i = 0; i < CANTIDAD_TRATAMIENTOS_ASIGNAR; i++) {
+                    int random = ThreadLocalRandom.current().nextInt(1, CANTIDAD_TRATAMIENTOS+1);
+                    System.out.println("NUMERO RANDOM: " + random + "DE: " + mascota.getId());
+                    Long search = Long.valueOf(random);
+                    System.out.println("SEARCH: " + search);
+                    Tratamiento tratamiento = tratamientoRepository.findById(search).get();
+                    mascota.setTratamiento(tratamiento);
+                    mascotaRepository.save(mascota);
+                }
             }
         }
 

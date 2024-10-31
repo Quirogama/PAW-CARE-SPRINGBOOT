@@ -28,11 +28,6 @@ public class DrogaServiceImpl implements DrogaService {
     }
 
     @Override
-    public List<Droga> SearchByMascotaId(Long id) {
-        return drogaRepository.findByMascotaId(id);
-    }
-
-    @Override
     public void add(Droga droga) {
         drogaRepository.save(droga);
     }

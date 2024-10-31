@@ -10,8 +10,6 @@ public interface DrogaService {
 
     public List<Droga> SearchAll();
 
-    public List<Droga> SearchByMascotaId(Long id);
-
     public Droga findByName(String name);
     
     public void add(Droga droga);

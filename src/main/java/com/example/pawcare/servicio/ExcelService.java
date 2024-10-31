@@ -62,18 +62,6 @@ public class ExcelService {
 
     public void guardarEnRepositorio() {
         List<Droga> drogas = leerDatosDesdeExcel();
-        for (Droga droga : drogas) {
-            drogaRepository.save(droga);
-            System.out.println("\n\nDroga guardada: " + droga);
-        }
-    }
-
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
-    
-    public void uploadCsv(String csvPath) {
-        String sql = "INSERT INTO DROGA (ID, NOMBRE, PRECIO_VENTA, PRECIO_COMPRA, UNIDADES_DISPONIBLES, UNIDADES_VENDIDAS) " +
-                     "SELECT * FROM CSVREAD('" + csvPath + "')";
-        jdbcTemplate.execute(sql);
+        drogaRepository.saveAll(drogas);
     }
 }
