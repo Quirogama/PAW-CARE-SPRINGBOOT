@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
 
 import com.example.pawcare.entidad.Droga;
 import com.example.pawcare.entidad.Mascota;
@@ -48,6 +49,22 @@ public class TratamientoController {
         tratamientoService.add(tratamiento);
     }
 
+    @PostMapping("/agregar/{idVET}/{idMASC}/{idDROGA}")
+    public void agregarTratamientoNuevo(Model model, @PathVariable("idVET") Long idVET, @PathVariable("idMASC") Long idMASC, @PathVariable("idDROGA") Long idDROGA, @RequestBody Tratamiento tratamiento) {
+        Droga droga = drogaService.SearchById(idVET);
+        Mascota mascota = mascotaService.SearchById(idMASC);
+        Veterinario veterinario = veterinarioService.SearchById(idVET);
+
+        mascota.setEstado("En tratamiento");
+
+        tratamiento.setDroga(droga);
+        tratamiento.setMascota(mascota);
+        tratamiento.setVeterinario(veterinario);
+
+        tratamientoService.add(tratamiento);
+    }
+    
+
     @PostMapping("/agregar/{cedula}/{nombredroga}/{id}")
     public void agregarTratamiento(@PathVariable("cedula") int cedula, @PathVariable("nombredroga") String nombredroga, @PathVariable("id") Long id , @RequestBody Tratamiento tratamiento) {      
           Droga droga = drogaService.findByName(nombredroga);
@@ -59,6 +76,17 @@ public class TratamientoController {
           tratamiento.setDroga(droga);
           tratamiento.setVeterinario(veterinario);
           tratamiento.setMascota(mascota);
+          System.out.println("\n\n\n\n\nFECHA -->"+tratamiento.getFecha());
+          tratamientoService.add(tratamiento);
+    }
+
+    @PostMapping("/agregar/{cedula}/{nombredroga}")
+    public void agregarTratamientoVD(@PathVariable("cedula") int cedula, @PathVariable("nombredroga") String nombredroga, @RequestBody Tratamiento tratamiento) {      
+          Droga droga = drogaService.findByName(nombredroga);
+          Veterinario veterinario = veterinarioService.SearchByCedula(cedula);
+          
+          tratamiento.setDroga(droga);
+          tratamiento.setVeterinario(veterinario);
           System.out.println("\n\n\n\n\nFECHA -->"+tratamiento.getFecha());
           tratamientoService.add(tratamiento);
     }

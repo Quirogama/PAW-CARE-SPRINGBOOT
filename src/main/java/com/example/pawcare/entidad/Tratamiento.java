@@ -32,9 +32,10 @@ public class Tratamiento {
     @OneToMany(mappedBy = "tratamiento", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Mascota> mascotas = new ArrayList<>();
 
-    public Tratamiento(Long id, LocalDate fecha, Droga droga, Veterinario veterinario) {
+    public Tratamiento(Long id, LocalDate fecha, String descripcion,Droga droga, Veterinario veterinario) {
         this.id = id;
         this.fecha = fecha;
+        this.descripcion = descripcion;
         this.droga = droga;
         this.veterinario = veterinario;
     }

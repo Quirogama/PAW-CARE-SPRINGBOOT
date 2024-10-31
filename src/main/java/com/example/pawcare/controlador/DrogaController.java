@@ -46,7 +46,7 @@ public class DrogaController {
         return droga;
     }
 
-    @GetMapping("/{nombre}")
+    @GetMapping("/nombre/{nombre}")
     public Droga drogaNombre(@PathVariable("nombre") String nombre) {
         return drogaService.findByName(nombre);
     }
