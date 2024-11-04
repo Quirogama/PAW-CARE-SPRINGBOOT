@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.pawcare.entidad.Mascota;
 import com.example.pawcare.entidad.Tratamiento;
 import com.example.pawcare.entidad.Veterinario;
 import com.example.pawcare.servicio.VeterinarioService;
+
 
 
 @RestController
@@ -81,5 +83,18 @@ public class VeterinarioController {
     @GetMapping("/tratamientos/{id}")
     public List<Tratamiento> tratamientosVeterinario(@PathVariable("id") Long id){
         return veterinarioService.SearchById(id).getTratamientos();
+    }
+
+    @GetMapping("mascotas/tratamiento/{id}")
+    public List<Mascota> getMascotasEnTratamiento(@PathVariable("id") Long id) {
+        List<Tratamiento> tratamientos = veterinarioService.SearchById(id).getTratamientos();
+
+        List<Mascota> mascotas = mascotas = new java.util.ArrayList<>();
+        if (tratamientos != null) {
+            for (Tratamiento tratamiento : tratamientos) {
+                mascotas.add(tratamiento.getMascota());
+            }
+        }
+        return mascotas;
     }
 }

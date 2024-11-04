@@ -1,17 +1,15 @@
 package com.example.pawcare.entidad;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Tratamiento {
@@ -31,9 +29,10 @@ public class Tratamiento {
     @JsonIgnore
     private Veterinario veterinario;
 
+    @OneToOne
     @JsonIgnore
-    @OneToMany(mappedBy = "tratamiento", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Mascota> mascotas = new ArrayList<>();
+    @JoinColumn(name = "mascota_id")
+    private Mascota mascota;
 
     public Tratamiento(Long id, LocalDate fecha, String descripcion) {
         this.id = id;
@@ -82,16 +81,12 @@ public class Tratamiento {
         this.veterinario = veterinario;
     }
 
-    public List<Mascota> getMascotas() {
-        return mascotas;
-    }
-
-    public void setMascotas(List<Mascota> mascotas) {
-        this.mascotas = mascotas;
+    public Mascota getMascota(){
+        return mascota;
     }
 
     public void setMascota(Mascota mascota){
-        this.mascotas.add(mascota);
+        this.mascota = mascota;
     }
 
     public String getDescripcion() {

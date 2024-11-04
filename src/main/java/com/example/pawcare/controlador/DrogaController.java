@@ -40,6 +40,11 @@ public class DrogaController {
         return drogaService.SearchAll();
     }
 
+    @GetMapping("/disp")
+    public List<Droga> mostrarDrogasDisp() {
+        return drogaService.SearchAll().stream().filter(droga -> droga.getUnidadesDisp() > 0).toList();
+    }
+
     @GetMapping("/{id}")
     public Droga mostrarDrogaId(@PathVariable("id") Long id) {
         Droga droga = drogaService.SearchById(id);

@@ -310,16 +310,29 @@ public class DatabaseInit implements ApplicationRunner {
         for (Mascota mascota : mascotaRepository.findAll()) {
             if (mascota.getEstado().equals("En tratamiento")) {
                 for (int i = 0; i < CANTIDAD_TRATAMIENTOS_ASIGNAR; i++) {
-                    int random = ThreadLocalRandom.current().nextInt(1, CANTIDAD_TRATAMIENTOS+1);
-                    System.out.println("NUMERO RANDOM: " + random + "DE: " + mascota.getId());
+                    int random = ThreadLocalRandom.current().nextInt(1, CANTIDAD_TRATAMIENTOS + 1);
+                    System.out.println("NUMERO RANDOM: " + random + " DE: " + mascota.getId());
                     Long search = Long.valueOf(random);
                     System.out.println("SEARCH: " + search);
-                    Tratamiento tratamiento = tratamientoRepository.findById(search).get();
-                    mascota.setTratamiento(tratamiento);
-                    mascotaRepository.save(mascota);
+
+                    Tratamiento tratamiento = tratamientoRepository.findById(search).orElse(null);
+
+                    // Verificar si el tratamiento ya está asociado a una mascota
+                    if (tratamiento != null && tratamiento.getMascota() == null) {
+                        // Asignar el tratamiento a la mascota y viceversa
+                        mascota.setTratamiento(tratamiento);
+                        tratamiento.setMascota(mascota);
+
+                        // Guardar en los repositorios
+                        tratamientoRepository.save(tratamiento);
+                        mascotaRepository.save(mascota);
+                    } else {
+                        System.out.println("El tratamiento con ID " + search + " ya está asignado a otra mascota.");
+                    }
                 }
             }
         }
+
 
         List<Veterinario> primerosDiezVeterinarios = veterinarioRepository.findAll().subList(0, 10);
         List<Tratamiento> todosLosTratamientos = tratamientoRepository.findAll();

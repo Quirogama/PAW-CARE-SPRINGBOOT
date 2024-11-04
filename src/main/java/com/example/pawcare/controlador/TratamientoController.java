@@ -6,6 +6,7 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,12 +49,7 @@ public class TratamientoController {
     }
     
     @PostMapping("/agregar/{idVET}/{idMASC}/{idDROGA}")
-    public void agregarTratamientoNuevo(
-            @PathVariable("idVET") Long idVET,
-            @PathVariable("idMASC") Long idMASC,
-            @PathVariable("idDROGA") Long idDROGA,
-            @RequestParam("descripcion") String descripcion,
-            @RequestParam("fecha") String fecha) {
+    public void agregarTratamientoNuevo(@PathVariable("idVET") Long idVET,@PathVariable("idMASC") Long idMASC,@PathVariable("idDROGA") Long idDROGA,@RequestParam("descripcion") String descripcion,@RequestParam("fecha") String fecha) {
 
         Tratamiento tratamiento = new Tratamiento();
         tratamiento.setDescripcion(descripcion);
@@ -74,7 +70,27 @@ public class TratamientoController {
 
         veterinario.setNumAtenciones(veterinario.getNumAtenciones() + 1);
         veterinarioService.update(veterinario);
-}
+
+        droga.setUnidadesVendidas(droga.getUnidadesVendidas() + 1);
+        droga.setUnidadesDisp(droga.getUnidadesDisp() - 1);
+        drogaService.update(droga);
+    }
+
+    @DeleteMapping("/eliminar/{id}")
+    public void borrarTratamiento(@PathVariable("id") Long id) {
+        System.out.println("\n\n\n\n\nID ENTRADA --> " + id);
+        Tratamiento tratamiento = tratamientoService.SearchById(id);
+        Mascota mascota = tratamiento.getMascota();
+
+        tratamientoService.deleteById(id);
+
+        mascota.setEstado("Recuperado");
+        mascotaService.update(mascota);
+
+        Veterinario veterinario = tratamiento.getVeterinario();
+        veterinario.getTratamientos().remove(tratamiento);
+        veterinarioService.update(veterinario);
+    }
 
 
     @GetMapping("/all")
