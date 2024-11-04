@@ -87,6 +87,12 @@
 			<version>3.3.0</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+
+
 		<!-- agregado para el sprint 8 clase REST-->
 		<!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-ui-->
 		<dependency>
