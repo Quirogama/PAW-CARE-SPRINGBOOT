@@ -10,4 +10,7 @@ import com.example.pawcare.entidad.Tratamiento;
 public interface TratamientoRepository extends JpaRepository<Tratamiento, Long> {
     @Query("SELECT COUNT(t) FROM Tratamiento t WHERE t.fecha BETWEEN :startDate AND :endDate")
     Long countTratamientosByFechaBetween(@Param("startDate") String startDate, @Param("endDate") String endDate);
+
+    @Query("SELECT t FROM Tratamiento t WHERE t.mascota.id = :id")
+    Tratamiento findByMascotaId(@Param("id") Long id);
 }

@@ -1,7 +1,5 @@
 package com.example.pawcare.servicio;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +41,11 @@ public class TratamientoServiceImpl implements TratamientoService {
     @Override
     public Tratamiento agregar(Tratamiento tratamiento){
         return tratamientoRepository.save(tratamiento);
+    }
+
+    @Override
+    public Tratamiento SearchByMascotaId(Long id) {
+        return tratamientoRepository.findByMascotaId(id);
     }
 
     // Nuevo método para obtener la cantidad de tratamientos del último mes

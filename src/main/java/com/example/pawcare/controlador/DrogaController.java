@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.pawcare.entidad.Droga;
+import com.example.pawcare.entidad.Tratamiento;
 import com.example.pawcare.servicio.DrogaService;
+import com.example.pawcare.servicio.TratamientoService;
 
 @RestController
 @RequestMapping("/droga")
@@ -20,6 +22,9 @@ public class DrogaController {
     
     @Autowired
     private DrogaService drogaService;
+
+    @Autowired
+    private TratamientoService tratamientoService;
 
     // Endpoint para obtener el total de ventas (número total de unidades vendidas)
     @GetMapping("/ventas")
@@ -54,5 +59,15 @@ public class DrogaController {
     @GetMapping("/nombre/{nombre}")
     public Droga drogaNombre(@PathVariable("nombre") String nombre) {
         return drogaService.findByName(nombre);
+    }
+
+    @GetMapping("/mascota/{id}")
+    public Droga drogaMascota(@PathVariable("id") Long id) {
+        Tratamiento tratamiento = tratamientoService.SearchByMascotaId(id);
+        if (tratamiento != null) {
+            return tratamiento.getDroga();
+        } else {
+            return null; // o puedes lanzar una excepción si no se encuentra el tratamiento
+        }
     }
 }
