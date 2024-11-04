@@ -15,6 +15,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
+import org.openqa.selenium.JavascriptExecutor;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -98,7 +99,7 @@ public class MascotaTratamientoCase {
         inputDescripcion.sendKeys("Droga para obtener la supercarita ;)");
 
         try {
-            Thread.sleep(10000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -127,9 +128,9 @@ public class MascotaTratamientoCase {
             e.printStackTrace();
         }
 
-        /*wait.until(ExpectedConditions.presenceOfElementLocated(By.id("btnVerDetalles")));
-        WebElement btnDetalles = driver.findElement(By.id("btnVerDetalles"));
-        btnDetalles.click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("btnDetalleTratamiento")));
+        WebElement btnDetalleTratamiento = driver.findElement(By.id("btnDetalleTratamiento"));
+        btnDetalleTratamiento.click();
 
         try {
             Thread.sleep(1000);
@@ -138,12 +139,11 @@ public class MascotaTratamientoCase {
             e.printStackTrace();
         }
 
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("botonHistorial")));
-        WebElement btnHistorial = driver.findElement(By.className("botonHistorial"));
-        btnHistorial.click();*/
+        WebElement verDetallesButton = driver.findElement(By.xpath("//tr[td[text()='Charlie']]//button[contains(@class, 'botonDetalles') and text()='Ver Detalles']"));
+        verDetallesButton.click();
 
         try {
-            Thread.sleep(1000);
+            Thread.sleep(3000);
         } catch (InterruptedException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
