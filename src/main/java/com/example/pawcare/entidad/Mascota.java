@@ -13,14 +13,14 @@ public class Mascota {
 
     @Id
     @GeneratedValue
-    private Long id; // Añadir id
+    private Long id;
     private String nombre;
     private String peso;
     private String raza;
     private String enfermedad;
     private String estado;
     private int edad;
-    private String imagen; // Nuevo atributo para la URL de la imagen
+    private String imagen;
 
     @JsonIgnore
     @ManyToOne

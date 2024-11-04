@@ -3,6 +3,7 @@ package com.example.pawcare.controlador;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -45,7 +46,7 @@ public class TratamientoController {
     }
     
     @PostMapping("/agregar/{idVET}/{idMASC}/{idDROGA}")
-    public void agregarTratamientoNuevo(@PathVariable("idVET") Long idVET, @PathVariable("idMASC") Long idMASC, @PathVariable("idDROGA") Long idDROGA, @RequestBody Tratamiento tratamiento) {
+    public ResponseEntity<Tratamiento> agregarTratamientoNuevo(@PathVariable("idVET") Long idVET, @PathVariable("idMASC") Long idMASC, @PathVariable("idDROGA") Long idDROGA ,@RequestBody Tratamiento tratamiento) {
         System.out.println("\n\n\n\nDescripción recibida: " + tratamiento.getDescripcion());
         System.out.println("Fecha recibida: " + tratamiento.getFecha());
 
@@ -64,6 +65,8 @@ public class TratamientoController {
 
         veterinario.setNumAtenciones(veterinario.getNumAtenciones() + 1);
         veterinarioService.update(veterinario);
+
+        return ResponseEntity.ok(tratamiento);
     }
 
     @GetMapping("/all")

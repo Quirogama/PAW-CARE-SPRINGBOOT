@@ -35,21 +35,6 @@ public class Tratamiento {
     @OneToMany(mappedBy = "tratamiento", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Mascota> mascotas = new ArrayList<>();
 
-    public Tratamiento(Long id, LocalDate fecha, String descripcion,Droga droga, Veterinario veterinario) {
-        this.id = id;
-        this.fecha = fecha;
-        this.descripcion = descripcion;
-        this.droga = droga;
-        this.veterinario = veterinario;
-    }
-
-    public Tratamiento(LocalDate fecha){
-        this.fecha = fecha;
-    }
-
-    public Tratamiento() {
-    }
-
     public Tratamiento(Long id, LocalDate fecha, String descripcion) {
         this.id = id;
         this.fecha = fecha;
@@ -59,6 +44,9 @@ public class Tratamiento {
     public Tratamiento(LocalDate fecha, String descripcion) {
         this.fecha = fecha;
         this.descripcion = descripcion;
+    }
+
+    public Tratamiento() {
     }
 
     public Long getId() {
