@@ -10,8 +10,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data
+@NoArgsConstructor
 public class Tratamiento {
     @Id
     @GeneratedValue
@@ -42,58 +46,6 @@ public class Tratamiento {
 
     public Tratamiento(LocalDate fecha, String descripcion) {
         this.fecha = fecha;
-        this.descripcion = descripcion;
-    }
-
-    public Tratamiento() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {    
-        this.id = id;
-    }
-
-    public LocalDate getFecha() {
-        return fecha;
-    }
-
-
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
-    }
-
-    public Droga getDroga() {
-        return droga;
-    }
-
-    public void setDroga(Droga droga) {
-        this.droga = droga;
-    }
-
-    public Veterinario getVeterinario() {
-        return veterinario;
-    }
-
-    public void setVeterinario(Veterinario veterinario) {
-        this.veterinario = veterinario;
-    }
-
-    public Mascota getMascota(){
-        return mascota;
-    }
-
-    public void setMascota(Mascota mascota){
-        this.mascota = mascota;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 }
