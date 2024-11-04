@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -89,6 +88,7 @@ public class TratamientoController {
 
         Veterinario veterinario = tratamiento.getVeterinario();
         veterinario.getTratamientos().remove(tratamiento);
+        
         veterinarioService.update(veterinario);
     }
 
@@ -96,6 +96,12 @@ public class TratamientoController {
     @GetMapping("/all")
     public Collection<Tratamiento> getMethodName() {
         return tratamientoService.SearchAll();
+    }
+
+
+    @GetMapping("/mascota/{id}")
+    public Tratamiento getTratamientoMascota(@PathVariable("id") Long id) {
+        return tratamientoService.SearchByMascotaId(id);
     }
 
     /*
