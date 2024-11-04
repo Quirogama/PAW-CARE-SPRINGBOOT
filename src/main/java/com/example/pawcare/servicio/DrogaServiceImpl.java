@@ -15,11 +15,11 @@ public class DrogaServiceImpl implements DrogaService {
     DrogaRepository drogaRepository;
 
     @Autowired
-    private ExcelService excelService; // Asegúrate de inyectar ExcelService
+    private ExcelService excelService; 
 
     @Override
     public Droga SearchById(Long id) {
-        return drogaRepository.findById(id).orElse(null); // Mejor manejo de errores
+        return drogaRepository.findById(id).orElse(null); 
     }
 
     @Override
@@ -49,7 +49,7 @@ public class DrogaServiceImpl implements DrogaService {
 
     @Override
     public Integer getTotalVentas() {
-    List<Droga> drogas = cargarDrogasDesdeExcel();  // Carga las drogas desde Excel
+    List<Droga> drogas = drogaRepository.findAll();  // Carga las drogas desde Excel
     int totalVentas = 0;
     for (Droga droga : drogas) {
         totalVentas += droga.getUnidadesVendidas();  // Sumar el total de unidades vendidas
@@ -62,7 +62,7 @@ public class DrogaServiceImpl implements DrogaService {
 
     @Override
     public Float getTotalGanancias() {
-    List<Droga> drogas = cargarDrogasDesdeExcel();  // Carga las drogas desde Excel
+    List<Droga> drogas = drogaRepository.findAll();  // Carga las drogas desde Excel
     float totalGanancias = 0;
     for (Droga droga : drogas) {
         float gananciaPorUnidad = droga.getPrecioVenta() - droga.getPrecioCompra();

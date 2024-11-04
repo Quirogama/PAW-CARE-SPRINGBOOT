@@ -138,7 +138,4 @@ public ResponseEntity<String> actualizarMascota(@PathVariable Long id, @RequestB
     mascotaService.update(mascota);
     return ResponseEntity.ok("Mascota actualizada exitosamente");
 }
-
-
-
 }
