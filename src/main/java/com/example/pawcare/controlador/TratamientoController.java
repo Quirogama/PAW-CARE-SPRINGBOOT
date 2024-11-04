@@ -1,5 +1,6 @@
 package com.example.pawcare.controlador;
 
+import java.time.LocalDate;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.pawcare.entidad.Droga;
@@ -46,9 +48,16 @@ public class TratamientoController {
     }
     
     @PostMapping("/agregar/{idVET}/{idMASC}/{idDROGA}")
-    public ResponseEntity<Tratamiento> agregarTratamientoNuevo(@PathVariable("idVET") Long idVET, @PathVariable("idMASC") Long idMASC, @PathVariable("idDROGA") Long idDROGA ,@RequestBody Tratamiento tratamiento) {
-        System.out.println("\n\n\n\nDescripción recibida: " + tratamiento.getDescripcion());
-        System.out.println("Fecha recibida: " + tratamiento.getFecha());
+    public void agregarTratamientoNuevo(
+            @PathVariable("idVET") Long idVET,
+            @PathVariable("idMASC") Long idMASC,
+            @PathVariable("idDROGA") Long idDROGA,
+            @RequestParam("descripcion") String descripcion,
+            @RequestParam("fecha") String fecha) {
+
+        Tratamiento tratamiento = new Tratamiento();
+        tratamiento.setDescripcion(descripcion);
+        tratamiento.setFecha(LocalDate.parse(fecha)); 
 
         Droga droga = drogaService.SearchById(idDROGA);
         Mascota mascota = mascotaService.SearchById(idMASC);
@@ -65,9 +74,8 @@ public class TratamientoController {
 
         veterinario.setNumAtenciones(veterinario.getNumAtenciones() + 1);
         veterinarioService.update(veterinario);
+}
 
-        return ResponseEntity.ok(tratamiento);
-    }
 
     @GetMapping("/all")
     public Collection<Tratamiento> getMethodName() {
