@@ -85,7 +85,7 @@ public class VeterinarioController {
         return veterinarioService.SearchById(id).getTratamientos();
     }
 
-    @GetMapping("mascotas/tratamiento/{id}")
+    @GetMapping("/mascotas/tratamiento/{id}")
     public List<Mascota> getMascotasEnTratamiento(@PathVariable("id") Long id) {
         List<Tratamiento> tratamientos = veterinarioService.SearchById(id).getTratamientos();
 
