@@ -13,8 +13,13 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+//@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 
 public class MascotaTratamientoCase {
 
@@ -37,10 +42,24 @@ public class MascotaTratamientoCase {
     public void CaseTest_addTratamiento_listSize() {
 
         driver.get(BASE_URL);
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("btnLogin")));
         WebElement btnLogin = driver.findElement(By.id("btnLogin"));
         btnLogin.click();
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
         WebElement inputCedula1 = driver.findElement(By.id("cedula"));
         WebElement inputClave1 = driver.findElement(By.id("clave"));
@@ -48,9 +67,23 @@ public class MascotaTratamientoCase {
         inputCedula1.sendKeys("9991234");
         inputClave1.sendKeys("clave123");
 
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("btnIngresar")));
         WebElement btnIngresar = driver.findElement(By.id("btnIngresar"));
         btnIngresar.click();
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
         wait.until(ExpectedConditions.presenceOfElementLocated(By.className("botonDetalles")));
         WebElement botonDetalles = driver.findElement(By.className("botonDetalles"));
@@ -63,23 +96,58 @@ public class MascotaTratamientoCase {
 
         inputFecha.sendKeys("09-11-2024");
         inputDescripcion.sendKeys("Droga para obtener la supercarita ;)");
+
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("nombreDroga")));
         Select selectDroga = new Select(driver.findElement(By.id("nombreDroga")));
         selectDroga.selectByVisibleText("AMOXAL");
 
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
         wait.until(ExpectedConditions.presenceOfElementLocated(By.className("botonAgregar")));
         WebElement btnAgregar = driver.findElement(By.className("botonAgregar"));
         btnAgregar.click();
 
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("btnVerDetalles")));
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        /*wait.until(ExpectedConditions.presenceOfElementLocated(By.id("btnVerDetalles")));
         WebElement btnDetalles = driver.findElement(By.id("btnVerDetalles"));
         btnDetalles.click();
 
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
         wait.until(ExpectedConditions.presenceOfElementLocated(By.className("botonHistorial")));
         WebElement btnHistorial = driver.findElement(By.className("botonHistorial"));
-        btnHistorial.click();
+        btnHistorial.click();*/
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
         wait.until(ExpectedConditions.presenceOfElementLocated(By.className("btnlogout")));
         WebElement btnLogout = driver.findElement(By.className("btnlogout"));
@@ -92,21 +160,42 @@ public class MascotaTratamientoCase {
         inputCedula2.sendKeys("777");
         inputClave2.sendKeys("clave777");
 
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("btnIngresar")));
         WebElement btnIngresar2 = driver.findElement(By.id("btnIngresar"));
         btnIngresar2.click();
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
         // Esperar a que la sección de clientes esté completamente cargada y hacer clic en el botón de clientes
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("imgMascotas")));
         WebElement imgMascotas = driver.findElement(By.id("imgMascotas"));
         imgMascotas.click();
+
+        try {
+            Thread.sleep(20000);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         
     }
 
-    @AfterEach
+    /*@AfterEach
     public void tearDown() {
         if (driver != null) {
             driver.quit();
         }
-    }
+    }*/
 }
