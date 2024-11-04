@@ -23,7 +23,8 @@ import jakarta.transaction.Transactional;
 
 @Controller
 @Transactional
-public class DatabaseInit implements ApplicationRunner {
+@Profile("test")
+public class DatabaseInitTest implements ApplicationRunner {
 
     @Autowired
     ClienteRepository clienteRepository;
@@ -104,6 +105,7 @@ public class DatabaseInit implements ApplicationRunner {
         clienteRepository.save(new Cliente("Florencia Pineda", "florencia.pineda@example.com", 34567895, 19876547, "clave345"));
         clienteRepository.save(new Cliente("Luciano Jiménez", "luciano.jimenez@example.com", 45678906, 21987658, "clave456"));
         clienteRepository.save(new Cliente("Martina Castillo", "martina.castillo@example.com", 56789017, 32198769, "clave567"));
+        
 
         
         
