@@ -210,28 +210,65 @@ public class DatabaseInit implements ApplicationRunner {
         
 
         //Veterinarios
-        veterinarioRepository.save(new Veterinario("Dr. House", 9991234, "Tratamientos Oculares", "assets/img/veterinarioGenerico.png", 3, "clave123"));
-        veterinarioRepository.save(new Veterinario("Dra. Lisa Cuddy", 9994567, "Medicina Interna", "assets/img/veterinarioGenerico.png", 5, "clave567"));
-        veterinarioRepository.save(new Veterinario("Dr. James Wilson", 9998903, "Oncología", "assets/img/veterinarioGenerico.png", 4, "clave901"));
-        veterinarioRepository.save(new Veterinario("Dr. Robert Chase", 9993456, "Cirugía", "assets/img/veterinarioGenerico.png", 7, "clave456"));
-        veterinarioRepository.save(new Veterinario("Dra. Allison Cameron", 9997890, "Diagnóstico General", "assets/img/veterinarioGenerico.png", 6, "clave890"));
-        veterinarioRepository.save(new Veterinario("Dr. Eric Foreman", 9992345, "Neurología", "assets/img/veterinarioGenerico.png", 8, "clave345"));
-        veterinarioRepository.save(new Veterinario("Dr. Chris Taub", 9996789, "Cardiología", "assets/img/veterinarioGenerico.png", 5, "clave789"));
-        veterinarioRepository.save(new Veterinario("Dra. Remy Hadley", 9990123, "Genética", "assets/img/veterinarioGenerico.png", 3, "clave123"));
-        veterinarioRepository.save(new Veterinario("Dr. Lawrence Kutner", 9994547, "Psiquiatría", "assets/img/veterinarioGenerico.png", 4, "clave567"));
-        veterinarioRepository.save(new Veterinario("Dr. Jeffrey Cole", 9998901, "Medicina General", "assets/img/veterinarioGenerico.png", 2, "clave901"));
-        veterinarioRepository.save(new Veterinario("Dr. Henry Dobson", 9992346, "Dermatología", "assets/img/veterinarioGenerico.png", 6, "clave346"));
-        veterinarioRepository.save(new Veterinario("Dra. Amber Volakis", 9995679, "Anestesiología", "assets/img/veterinarioGenerico.png", 3, "clave679"));
-        veterinarioRepository.save(new Veterinario("Dra. Jessica Adams", 9998912, "Medicina de Urgencias", "assets/img/veterinarioGenerico.png", 4, "clave912"));
-        veterinarioRepository.save(new Veterinario("Dra. Chi Park", 9993457, "Neurocirugía", "assets/img/veterinarioGenerico.png", 5, "clave457"));
-        veterinarioRepository.save(new Veterinario("Dr. Gregory House", 9997891, "Nefrología", "assets/img/veterinarioGenerico.png", 9, "clave891"));
-        veterinarioRepository.save(new Veterinario("Dr. John Carter", 9992348, "Infectología", "assets/img/veterinarioGenerico.png", 7, "clave348"));
-        veterinarioRepository.save(new Veterinario("Dr. Peter Benton", 9995670, "Gastroenterología", "assets/img/veterinarioGenerico.png", 8, "clave670"));
-        veterinarioRepository.save(new Veterinario("Dra. Susan Lewis", 9998913, "Reumatología", "assets/img/veterinarioGenerico.png", 3, "clave913"));
-        veterinarioRepository.save(new Veterinario("Dr. Mark Greene", 9993458, "Pediatría", "assets/img/veterinarioGenerico.png", 6, "clave458"));
-        veterinarioRepository.save(new Veterinario("Dr. James Johnson", 9997892, "Cirugía Plástica", "assets/img/veterinarioGenerico.png", 7, "clave892"));
-        
+        Veterinario veterinarioEntity = Veterinario.builder().nombre("Dr. House").cedula(9991234).especialidad("Tratamientos Oculares").imagen("assets/img/veterinarioGenerico.png").numAtenciones(3).clave("clave123").build();
+        veterinarioRepository.save(veterinarioEntity);
+        veterinarioEntity = Veterinario.builder().nombre("Dra. Lisa Cuddy").cedula(9994567).especialidad("Medicina Interna").imagen("assets/img/veterinarioGenerico.png").numAtenciones(5).clave("clave567").build();
+        veterinarioRepository.save(veterinarioEntity);
 
+        veterinarioEntity = Veterinario.builder().nombre("Dr. James Wilson").cedula(9998903).especialidad("Oncología").imagen("assets/img/veterinarioGenerico.png").numAtenciones(4).clave("clave901").build();
+        veterinarioRepository.save(veterinarioEntity);
+
+        veterinarioEntity = Veterinario.builder().nombre("Dr. Robert Chase").cedula(9993456).especialidad("Cirugía").imagen("assets/img/veterinarioGenerico.png").numAtenciones(7).clave("clave456").build();
+        veterinarioRepository.save(veterinarioEntity);
+
+        veterinarioEntity = Veterinario.builder().nombre("Dra. Allison Cameron").cedula(9997890).especialidad("Diagnóstico General").imagen("assets/img/veterinarioGenerico.png").numAtenciones(6).clave("clave890").build();
+        veterinarioRepository.save(veterinarioEntity);
+
+        veterinarioEntity = Veterinario.builder().nombre("Dr. Eric Foreman").cedula(9992345).especialidad("Neurología").imagen("assets/img/veterinarioGenerico.png").numAtenciones(8).clave("clave345").build();
+        veterinarioRepository.save(veterinarioEntity);
+
+        veterinarioEntity = Veterinario.builder().nombre("Dr. Chris Taub").cedula(9996789).especialidad("Cardiología").imagen("assets/img/veterinarioGenerico.png").numAtenciones(5).clave("clave789").build();
+        veterinarioRepository.save(veterinarioEntity);
+
+        veterinarioEntity = Veterinario.builder().nombre("Dra. Remy Hadley").cedula(9990123).especialidad("Genética").imagen("assets/img/veterinarioGenerico.png").numAtenciones(3).clave("clave123").build();
+        veterinarioRepository.save(veterinarioEntity);
+
+        veterinarioEntity = Veterinario.builder().nombre("Dr. Lawrence Kutner").cedula(9994547).especialidad("Psiquiatría").imagen("assets/img/veterinarioGenerico.png").numAtenciones(4).clave("clave567").build();
+        veterinarioRepository.save(veterinarioEntity);
+
+        veterinarioEntity = Veterinario.builder().nombre("Dr. Jeffrey Cole").cedula(9998901).especialidad("Medicina General").imagen("assets/img/veterinarioGenerico.png").numAtenciones(2).clave("clave901").build();
+        veterinarioRepository.save(veterinarioEntity);
+
+        veterinarioEntity = Veterinario.builder().nombre("Dr. Henry Dobson").cedula(9992346).especialidad("Dermatología").imagen("assets/img/veterinarioGenerico.png").numAtenciones(6).clave("clave346").build();
+        veterinarioRepository.save(veterinarioEntity);
+
+        veterinarioEntity = Veterinario.builder().nombre("Dra. Amber Volakis").cedula(9995679).especialidad("Anestesiología").imagen("assets/img/veterinarioGenerico.png").numAtenciones(3).clave("clave679").build();
+        veterinarioRepository.save(veterinarioEntity);
+
+        veterinarioEntity = Veterinario.builder().nombre("Dra. Jessica Adams").cedula(9998912).especialidad("Medicina de Urgencias").imagen("assets/img/veterinarioGenerico.png").numAtenciones(4).clave("clave912").build();
+        veterinarioRepository.save(veterinarioEntity);
+
+        veterinarioEntity = Veterinario.builder().nombre("Dra. Chi Park").cedula(9993457).especialidad("Neurocirugía").imagen("assets/img/veterinarioGenerico.png").numAtenciones(5).clave("clave457").build();
+        veterinarioRepository.save(veterinarioEntity);
+
+        veterinarioEntity = Veterinario.builder().nombre("Dr. Gregory House").cedula(9997891).especialidad("Nefrología").imagen("assets/img/veterinarioGenerico.png").numAtenciones(9).clave("clave891").build();
+        veterinarioRepository.save(veterinarioEntity);
+
+        veterinarioEntity = Veterinario.builder().nombre("Dr. John Carter").cedula(9992348).especialidad("Infectología").imagen("assets/img/veterinarioGenerico.png").numAtenciones(7).clave("clave348").build();
+        veterinarioRepository.save(veterinarioEntity);
+
+        veterinarioEntity = Veterinario.builder().nombre("Dr. Peter Benton").cedula(9995670).especialidad("Gastroenterología").imagen("assets/img/veterinarioGenerico.png").numAtenciones(8).clave("clave670").build();
+        veterinarioRepository.save(veterinarioEntity);
+
+        veterinarioEntity = Veterinario.builder().nombre("Dra. Susan Lewis").cedula(9998913).especialidad("Reumatología").imagen("assets/img/veterinarioGenerico.png").numAtenciones(3).clave("clave913").build();
+        veterinarioRepository.save(veterinarioEntity);
+
+        veterinarioEntity = Veterinario.builder().nombre("Dr. Mark Greene").cedula(9993458).especialidad("Pediatría").imagen("assets/img/veterinarioGenerico.png").numAtenciones(6).clave("clave458").build();
+        veterinarioRepository.save(veterinarioEntity);
+
+        veterinarioEntity = Veterinario.builder().nombre("Dr. James Johnson").cedula(9997892).especialidad("Cirugía Plástica").imagen("assets/img/veterinarioGenerico.png").numAtenciones(7).clave("clave892").build();
+        veterinarioRepository.save(veterinarioEntity);
+        
         //Tratamientos
         tratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-10-01"), "Desparasitación interna y externa"));
         tratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-10-22"), "Vacunación contra la rabia"));
