@@ -2,7 +2,6 @@ package com.example.pawcare.e2e;
 
 import java.time.Duration;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -14,8 +13,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.DirtiesContext;
-import org.openqa.selenium.JavascriptExecutor;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -182,6 +179,19 @@ public class MascotaTratamientoCase {
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("imgMascotas")));
         WebElement imgMascotas = driver.findElement(By.id("imgMascotas"));
         imgMascotas.click();
+
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("btnDashboardHeader")));
+        WebElement btnDashboardHeader = driver.findElement(By.id("btnDashboardHeader"));
+        btnDashboardHeader.click();
+
+
 
         try {
             Thread.sleep(20000);
