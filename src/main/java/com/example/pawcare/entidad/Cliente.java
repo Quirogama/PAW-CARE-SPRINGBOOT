@@ -3,24 +3,36 @@ package com.example.pawcare.entidad;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Transient;
 import lombok.Data;
 
 @Entity
 @Data
 public class Cliente {
-    @Id
-    @GeneratedValue
-    private Long id;
 
+    @OneToOne(cascade=CascadeType.ALL)
+    private UserEntity userEntity;
+
+    @Column(name = "NAME")
     private String nombre;
     private String correo;
     private int cedula;
     private int celular;
+
+    @Transient
     private String clave;
+
+
+    @Id
+    @GeneratedValue
+    private Long id;
 
     @OneToMany(mappedBy = "cliente")
     private List<Mascota> mascotas = new ArrayList<>();

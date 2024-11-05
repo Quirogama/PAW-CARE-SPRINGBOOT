@@ -1,8 +1,11 @@
 package com.example.pawcare.entidad;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Transient;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,9 +14,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Administrador {
 
+    @OneToOne(cascade=CascadeType.ALL)
+    private UserEntity userEntity;
+
     @Id
     @GeneratedValue
     private Long id;
+    
     
     private String clave;
     
