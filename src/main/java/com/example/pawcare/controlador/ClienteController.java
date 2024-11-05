@@ -3,7 +3,6 @@ package com.example.pawcare.controlador;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -75,15 +74,6 @@ public class ClienteController {
         clienteService.add(cliente);
     }
 
-    //intento de agregar mascota a cliente 
-    /*
-     * 
-    @PostMapping("/mascota/add")
-    public void ClienteMascota(@RequestBody Mascota mascota, @PathVariable("cedula") int cedula) {
-        clienteService.addMascota(mascota, cedula);
-    }
-
-     */
     @PostMapping("/mascota/add/{cedula}")
     public void addMascota(@RequestBody Mascota mascota, @PathVariable("cedula") int cedula) {
         // Llamar al servicio para agregar la mascota al cliente con la cédula proporcionada
