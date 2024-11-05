@@ -301,6 +301,8 @@ public class MascotaDetailCase {
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("btnIngresar")));
         WebElement btnIngresar3 = driver.findElement(By.id("btnIngresar"));
         btnIngresar3.click();
+
+        
         
     }
 
