@@ -124,7 +124,7 @@ public class ClienteController {
         //return "redirect:/admin/clientes";
     }
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public ResponseEntity login(@RequestBody Cliente cliente) {
         Authentication authentication = authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(

@@ -30,6 +30,8 @@ public class SecurityConfig {
                         .headers(headers -> headers.frameOptions(frame -> frame.disable()))
                         .authorizeHttpRequests(requests -> requests
                                 .requestMatchers("/h2/**").permitAll()
+                                .requestMatchers("/login").permitAll()
+                                .requestMatchers("/cliente/login").permitAll()
                                 .requestMatchers("/veterinario/details").hasAuthority("VETERINARIO")
                                 .requestMatchers("/cliente/details").hasAuthority("CLIENTE")
                                 .requestMatchers("/cliente/cedula/{cedula}").permitAll()
