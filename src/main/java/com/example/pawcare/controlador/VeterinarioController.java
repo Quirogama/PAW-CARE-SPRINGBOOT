@@ -28,6 +28,7 @@ import com.example.pawcare.entidad.UserEntity;
 import com.example.pawcare.entidad.Veterinario;
 import com.example.pawcare.repositorio.UserRepository;
 import com.example.pawcare.seguridad.CustomUserDetailService;
+import com.example.pawcare.seguridad.JWTGenerator;
 import com.example.pawcare.servicio.VeterinarioService;
 
 
@@ -48,6 +49,9 @@ public class VeterinarioController {
 
     @Autowired
     AuthenticationManager authenticationManager;
+
+    @Autowired
+    JWTGenerator JWTGenerator;
 
     //http://localhost:8080/veterinario/all
     @GetMapping("/all")
@@ -104,7 +108,9 @@ public class VeterinarioController {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        return new ResponseEntity<String>("Usuario ingresa con exito", HttpStatus.OK);
+        String token = JWTGenerator.generateToken(authentication);
+ 
+        return new ResponseEntity<String>(token, HttpStatus.OK);
     }
     
     

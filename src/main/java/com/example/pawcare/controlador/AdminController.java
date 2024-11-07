@@ -25,6 +25,7 @@ import com.example.pawcare.entidad.Cliente;
 import com.example.pawcare.entidad.Mascota;
 import com.example.pawcare.errorHandling.NotFoundException;
 import com.example.pawcare.errorHandling.UserAlreadyExistsException;
+import com.example.pawcare.seguridad.JWTGenerator;
 import com.example.pawcare.servicio.AdministradorService;
 import com.example.pawcare.servicio.ClienteService;
 import com.example.pawcare.servicio.MascotaService;
@@ -48,6 +49,9 @@ public class AdminController {
 
     @Autowired
     AuthenticationManager authenticationManager;
+
+    @Autowired
+    JWTGenerator JWTGenerator;
 
     @GetMapping("/registro")
     public String mostrarFormularioRegistro(Model model) {
@@ -122,6 +126,8 @@ public class AdminController {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        return new ResponseEntity<String>("Usuario ingresa con exito", HttpStatus.OK);
+        String token = JWTGenerator.generateToken(authentication);
+ 
+        return new ResponseEntity<String>(token, HttpStatus.OK);
     }
 }

@@ -26,6 +26,7 @@ import com.example.pawcare.entidad.Mascota;
 import com.example.pawcare.entidad.UserEntity;
 import com.example.pawcare.repositorio.UserRepository;
 import com.example.pawcare.seguridad.CustomUserDetailService;
+import com.example.pawcare.seguridad.JWTGenerator;
 import com.example.pawcare.servicio.AdministradorService;
 import com.example.pawcare.servicio.ClienteService;
 
@@ -50,6 +51,9 @@ public class ClienteController {
 
     @Autowired
     AuthenticationManager authenticationManager;
+
+    @Autowired
+    JWTGenerator JWTGenerator;
 
     @GetMapping("/all")
         public List<Cliente> allClientes(Model model) {
@@ -131,7 +135,9 @@ public class ClienteController {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        return new ResponseEntity<String>("Usuario ingresa con exito", HttpStatus.OK);
+        String token = JWTGenerator.generateToken(authentication);
+ 
+        return new ResponseEntity<String>(token, HttpStatus.OK);
     }
         
 }
