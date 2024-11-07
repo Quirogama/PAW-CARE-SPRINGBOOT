@@ -115,7 +115,7 @@ public class AdminController {
         return admin;
     }
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public ResponseEntity login(@RequestBody Administrador admin) {
                 Authentication authentication = authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(

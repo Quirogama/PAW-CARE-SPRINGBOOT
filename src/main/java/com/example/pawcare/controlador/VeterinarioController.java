@@ -97,7 +97,7 @@ public class VeterinarioController {
         return new ResponseEntity<Veterinario>(newVeterinario, HttpStatus.CREATED);
     }
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public ResponseEntity login(@RequestBody Veterinario veterinario) {
                 Authentication authentication = authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(
