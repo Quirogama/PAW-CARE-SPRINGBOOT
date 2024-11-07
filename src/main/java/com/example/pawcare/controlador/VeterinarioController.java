@@ -151,8 +151,8 @@ public class VeterinarioController {
 
     @GetMapping("/details")
     public ResponseEntity<Veterinario> buscarVeterinario() {
-        Veterinario veterinario = veterinarioService.SearchByName(
-            SecurityContextHolder.getContext().getAuthentication().getName()
+        Veterinario veterinario = veterinarioService.SearchByCedula(
+            Integer.parseInt(SecurityContextHolder.getContext().getAuthentication().getName())
         );
 
         if (veterinario == null) {

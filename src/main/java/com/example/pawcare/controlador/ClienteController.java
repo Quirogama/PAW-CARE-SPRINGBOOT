@@ -141,15 +141,15 @@ public class ClienteController {
     }
 
     @GetMapping("/details")
-    public ResponseEntity<Cliente> buscarEstudiante() {
-        Cliente cliente = clienteService.SearchByCorreo(
-            SecurityContextHolder.getContext().getAuthentication().getName()
+    public ResponseEntity<Cliente> buscarCliente() {
+        Cliente cliente = clienteService.SearchByCedula(
+            Integer.parseInt(SecurityContextHolder.getContext().getAuthentication().getName())
         );
-
+        System.out.println("BUSCANDO CLIENTE");
         if (cliente == null) {
             return new ResponseEntity<Cliente>(HttpStatus.NOT_FOUND);
         }
-
+        
         return new ResponseEntity<Cliente>(cliente, HttpStatus.OK);
     }
     
