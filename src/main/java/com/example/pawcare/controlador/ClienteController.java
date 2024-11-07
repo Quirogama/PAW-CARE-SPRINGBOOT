@@ -145,7 +145,7 @@ public class ClienteController {
         Cliente cliente = clienteService.SearchByCedula(
             Integer.parseInt(SecurityContextHolder.getContext().getAuthentication().getName())
         );
-        System.out.println("BUSCANDO CLIENTE");
+        
         if (cliente == null) {
             return new ResponseEntity<Cliente>(HttpStatus.NOT_FOUND);
         }
