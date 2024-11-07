@@ -9,6 +9,7 @@ public interface ClienteService {
     public Cliente SearchById(Long id);
     public List<Cliente> SearchAll();
     public void add(Cliente cliente);
+    public Cliente agregar(Cliente cliente);
     public void deleteById(Long id);
     public void update(Cliente cliente);
     public Cliente SearchByCedula(int cedula);

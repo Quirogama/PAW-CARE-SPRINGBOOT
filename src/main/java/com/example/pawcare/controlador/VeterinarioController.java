@@ -4,6 +4,12 @@ package com.example.pawcare.controlador;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,9 +21,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.pawcare.entidad.Cliente;
 import com.example.pawcare.entidad.Mascota;
 import com.example.pawcare.entidad.Tratamiento;
+import com.example.pawcare.entidad.UserEntity;
 import com.example.pawcare.entidad.Veterinario;
+import com.example.pawcare.repositorio.UserRepository;
+import com.example.pawcare.seguridad.CustomUserDetailService;
 import com.example.pawcare.servicio.VeterinarioService;
 
 
@@ -29,6 +39,15 @@ public class VeterinarioController {
     
     @Autowired
     VeterinarioService veterinarioService;
+
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    CustomUserDetailService customUserDetailService;
+
+    @Autowired
+    AuthenticationManager authenticationManager;
 
     //http://localhost:8080/veterinario/all
     @GetMapping("/all")
@@ -60,9 +79,35 @@ public class VeterinarioController {
     }
 
     @PostMapping("/add")
-    public void agregarVeterinario(@RequestBody Veterinario veterinario) {
-        veterinarioService.add(veterinario);
+    public ResponseEntity agregarVeterinario(@RequestBody Veterinario veterinario) {
+        if(userRepository.existsByUsername(String.valueOf(veterinario.getCedula()))){
+            return new ResponseEntity<Veterinario>(veterinario, HttpStatus.BAD_REQUEST);
+        }
+        
+        UserEntity userEntity = customUserDetailService.VeterinarioToUser(veterinario); 
+        veterinario.setUserEntity(userEntity);
+        Veterinario newVeterinario = veterinarioService.agregar(veterinario);
+        if (newVeterinario == null) {
+            return new ResponseEntity<Veterinario>(newVeterinario, HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<Veterinario>(newVeterinario, HttpStatus.CREATED);
     }
+
+    @GetMapping("/login")
+    public ResponseEntity login(@RequestBody Veterinario veterinario) {
+                Authentication authentication = authenticationManager.authenticate(
+            new UsernamePasswordAuthenticationToken(
+                veterinario.getCedula(),
+                veterinario.getClave()
+            )
+        );
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        return new ResponseEntity<String>("Usuario ingresa con exito", HttpStatus.OK);
+    }
+    
+    
 
     @DeleteMapping("/eliminar/{id}")
     public void borrarVeterinario(@PathVariable("id") Long id) {

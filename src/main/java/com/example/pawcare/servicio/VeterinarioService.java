@@ -8,6 +8,7 @@ public interface VeterinarioService {
     public Veterinario SearchById(Long id);
     public List<Veterinario> SearchAll();
     public void add(Veterinario Veterinario);
+    public Veterinario agregar(Veterinario Veterinario);
     public void deleteById(Long id);
     public void update(Veterinario Veterinario);
     public Veterinario SearchByCedula(int cedula);

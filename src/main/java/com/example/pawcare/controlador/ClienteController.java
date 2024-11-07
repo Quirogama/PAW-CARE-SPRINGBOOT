@@ -3,6 +3,12 @@ package com.example.pawcare.controlador;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,7 +23,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.pawcare.entidad.Cliente;
 import com.example.pawcare.entidad.Mascota;
-import com.example.pawcare.errorHandling.UserAlreadyExistsException;
+import com.example.pawcare.entidad.UserEntity;
+import com.example.pawcare.repositorio.UserRepository;
+import com.example.pawcare.seguridad.CustomUserDetailService;
 import com.example.pawcare.servicio.AdministradorService;
 import com.example.pawcare.servicio.ClienteService;
 
@@ -33,6 +41,15 @@ public class ClienteController {
 
     @Autowired
     AdministradorService adminService;
+
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    CustomUserDetailService customUserDetailService;
+
+    @Autowired
+    AuthenticationManager authenticationManager;
 
     @GetMapping("/all")
         public List<Cliente> allClientes(Model model) {
@@ -54,17 +71,10 @@ public class ClienteController {
         Cliente cliente = clienteService.SearchByCedula(cedula);
         return cliente;
     }
-
-    @GetMapping("/add")
-    public String mostrarFormularioRegistro(Model model) {
-        Cliente cliente = new Cliente("","",1,1,"");
-        model.addAttribute("cliente", cliente);
-        return "registro";
-    }
-
+    
     @PostMapping("/add")
-    public void registroCliente(@RequestBody Cliente cliente) {
-        
+    public ResponseEntity<Cliente> registroCliente(@RequestBody Cliente cliente) {
+        /*
         if (clienteService.SearchByCedula(cliente.getCedula()) != null) {
             throw new UserAlreadyExistsException(cliente.getCedula());
         }
@@ -72,6 +82,18 @@ public class ClienteController {
             throw new UserAlreadyExistsException(cliente.getCedula());
         }
         clienteService.add(cliente);
+         */
+        if(userRepository.existsByUsername(String.valueOf(cliente.getCedula()))){
+            return new ResponseEntity<Cliente>(cliente, HttpStatus.BAD_REQUEST);
+        }
+        
+        UserEntity userEntity = customUserDetailService.ClienteToUser(cliente); 
+        cliente.setUserEntity(userEntity);
+        Cliente newCliente = clienteService.agregar(cliente);
+        if (newCliente == null) {
+            return new ResponseEntity<Cliente>(newCliente, HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<Cliente>(newCliente, HttpStatus.CREATED);
     }
 
     @PostMapping("/mascota/add/{cedula}")
@@ -99,15 +121,19 @@ public class ClienteController {
     }
 
     @GetMapping("/login")
-public String login(@RequestParam("cedula") int cedula, Model model) {
-    Cliente cliente = clienteService.SearchByCedula(cedula);
-    if (cliente != null) {
-        model.addAttribute("cliente", cliente);
-        return "clientePerfil";
+    public ResponseEntity login(@RequestBody Cliente cliente) {
+        Authentication authentication = authenticationManager.authenticate(
+            new UsernamePasswordAuthenticationToken(
+                cliente.getCedula(),
+                cliente.getClave()
+            )
+        );
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        return new ResponseEntity<String>("Usuario ingresa con exito", HttpStatus.OK);
     }
-    else {
-        return "";
-    }
-    }
+        
 }
+
 
