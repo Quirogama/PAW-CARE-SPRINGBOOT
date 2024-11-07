@@ -1,5 +1,6 @@
 package com.example.pawcare.seguridad;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,15 +17,19 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
     
+        @Autowired
+        private JwtAuthEntryPoint jwtAuthEntryPoint;
+
         @Bean
-        public SecurityFilterChain securityfilterChain(HttpSecurity http) throws Exception {
+        SecurityFilterChain securityfilterChain(HttpSecurity http) throws Exception {
                 http
                         .csrf(AbstractHttpConfigurer::disable)
                         .headers(headers -> headers.frameOptions(frame -> frame.disable()))
                         .authorizeHttpRequests(requests -> requests
                                 .requestMatchers("/h2/**").permitAll()
                                 .anyRequest().permitAll()
-                        );
+                        )
+                        .exceptionHandling(exception -> exception.authenticationEntryPoint(jwtAuthEntryPoint));
                 return http.build();
     }
 
