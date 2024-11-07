@@ -13,5 +13,6 @@ public interface ClienteService {
     public void deleteById(Long id);
     public void update(Cliente cliente);
     public Cliente SearchByCedula(int cedula);
-    public void addMascota(Mascota mascota, int cedula);    
+    public void addMascota(Mascota mascota, int cedula);
+    public Cliente SearchByCorreo(String correo);    
 }

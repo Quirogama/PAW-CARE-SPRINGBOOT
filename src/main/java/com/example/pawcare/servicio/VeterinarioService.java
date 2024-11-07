@@ -12,4 +12,5 @@ public interface VeterinarioService {
     public void deleteById(Long id);
     public void update(Veterinario Veterinario);
     public Veterinario SearchByCedula(int cedula);
+    public Veterinario SearchByName(String name);
 }

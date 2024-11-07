@@ -62,4 +62,9 @@ public class ClienteServiceImpl implements ClienteService {
 
         }
     }
+
+    @Override
+    public Cliente SearchByCorreo(String correo) {
+        return clienteRepository.findByCorreo(correo);
+    }
 }

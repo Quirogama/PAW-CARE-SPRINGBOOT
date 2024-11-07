@@ -7,5 +7,7 @@ import com.example.pawcare.entidad.Veterinario;
 
 @Repository
 public interface VeterinarioRepository extends JpaRepository<Veterinario, Long> {
-    Veterinario findByCedula(int cedula); 
+    Veterinario findByCedula(int cedula);
+
+    Veterinario findByNombre(String name); 
 }

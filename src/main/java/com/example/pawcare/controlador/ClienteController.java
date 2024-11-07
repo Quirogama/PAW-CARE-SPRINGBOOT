@@ -139,6 +139,20 @@ public class ClienteController {
  
         return new ResponseEntity<String>(token, HttpStatus.OK);
     }
+
+    @GetMapping("/details")
+    public ResponseEntity<Cliente> buscarEstudiante() {
+        Cliente cliente = clienteService.SearchByCorreo(
+            SecurityContextHolder.getContext().getAuthentication().getName()
+        );
+
+        if (cliente == null) {
+            return new ResponseEntity<Cliente>(HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<Cliente>(cliente, HttpStatus.OK);
+    }
+    
         
 }
 

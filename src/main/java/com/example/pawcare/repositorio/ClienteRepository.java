@@ -14,6 +14,8 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long>{
     @Query("SELECT c FROM Cliente c WHERE c.id < 25")
     List<Cliente> findAllByIdLessThan(int id);
 
+    Cliente findByCorreo(String correo);
+
     
 }
 

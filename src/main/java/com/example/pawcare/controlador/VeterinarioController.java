@@ -148,4 +148,17 @@ public class VeterinarioController {
         }
         return mascotas;
     }
+
+    @GetMapping("/details")
+    public ResponseEntity<Veterinario> buscarVeterinario() {
+        Veterinario veterinario = veterinarioService.SearchByName(
+            SecurityContextHolder.getContext().getAuthentication().getName()
+        );
+
+        if (veterinario == null) {
+            return new ResponseEntity<Veterinario>(HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<Veterinario>(veterinario, HttpStatus.OK);
+    }
 }

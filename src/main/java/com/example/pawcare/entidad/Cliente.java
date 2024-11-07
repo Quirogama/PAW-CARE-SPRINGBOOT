@@ -26,7 +26,7 @@ public class Cliente {
     private int cedula;
     private int celular;
 
-    @Transient
+
     private String clave;
 
 
