@@ -16,7 +16,7 @@ public class VeterinarioServiceImpl implements VeterinarioService {
 
     @Override
     public Veterinario SearchById(Long id) {
-        return veterinarioRepository.findById(id).get();
+        return veterinarioRepository.findById(id).orElse(null);
     }
 
     @Override

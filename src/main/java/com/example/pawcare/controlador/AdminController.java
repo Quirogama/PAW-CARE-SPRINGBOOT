@@ -130,4 +130,17 @@ public class AdminController {
  
         return new ResponseEntity<String>(token, HttpStatus.OK);
     }
+
+    @GetMapping("/details")
+    public ResponseEntity<Administrador> buscarCliente() {
+        Administrador administrador = AdminService.SearchByCedula(
+            Integer.parseInt(SecurityContextHolder.getContext().getAuthentication().getName())
+        );
+        
+        if (administrador == null) {
+            return new ResponseEntity<Administrador>(HttpStatus.NOT_FOUND);
+        }
+        
+        return new ResponseEntity<Administrador>(administrador, HttpStatus.OK);
+    }
 }

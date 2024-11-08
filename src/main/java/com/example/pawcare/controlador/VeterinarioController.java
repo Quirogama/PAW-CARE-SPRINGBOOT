@@ -97,24 +97,6 @@ public class VeterinarioController {
         return new ResponseEntity<Veterinario>(newVeterinario, HttpStatus.CREATED);
     }
 
-    @PostMapping("/login")
-    public ResponseEntity login(@RequestBody Veterinario veterinario) {
-                Authentication authentication = authenticationManager.authenticate(
-            new UsernamePasswordAuthenticationToken(
-                veterinario.getCedula(),
-                veterinario.getClave()
-            )
-        );
-
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-
-        String token = JWTGenerator.generateToken(authentication);
- 
-        return new ResponseEntity<String>(token, HttpStatus.OK);
-    }
-    
-    
-
     @DeleteMapping("/eliminar/{id}")
     public void borrarVeterinario(@PathVariable("id") Long id) {
         veterinarioService.deleteById(id);
@@ -149,6 +131,22 @@ public class VeterinarioController {
         return mascotas;
     }
 
+    @PostMapping("/login")
+    public ResponseEntity login(@RequestBody Veterinario veterinario) {
+                Authentication authentication = authenticationManager.authenticate(
+            new UsernamePasswordAuthenticationToken(
+                veterinario.getCedula(),
+                veterinario.getClave()
+            )
+        );
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        String token = JWTGenerator.generateToken(authentication);
+ 
+        return new ResponseEntity<String>(token, HttpStatus.OK);
+    }
+
     @GetMapping("/details")
     public ResponseEntity<Veterinario> buscarVeterinario() {
         Veterinario veterinario = veterinarioService.SearchByCedula(
@@ -158,7 +156,8 @@ public class VeterinarioController {
         if (veterinario == null) {
             return new ResponseEntity<Veterinario>(HttpStatus.NOT_FOUND);
         }
-
+        
         return new ResponseEntity<Veterinario>(veterinario, HttpStatus.OK);
-    }
+    } 
+    
 }

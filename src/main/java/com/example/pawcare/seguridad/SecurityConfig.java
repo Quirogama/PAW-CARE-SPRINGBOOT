@@ -13,8 +13,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.example.pawcare.entidad.Veterinario;
-
 
 @Configuration
 @EnableWebSecurity
@@ -33,6 +31,7 @@ public class SecurityConfig {
                                 .requestMatchers("/login").permitAll()
                                 .requestMatchers("/cliente/login").permitAll()
                                 .requestMatchers("/veterinario/details").hasAuthority("VETERINARIO")
+                                .requestMatchers("/veterinario/details").hasAuthority("ADMIN")
                                 .requestMatchers("/cliente/details").hasAuthority("CLIENTE")
                                 .requestMatchers("/cliente/cedula/{cedula}").permitAll()
                                 .anyRequest().permitAll()

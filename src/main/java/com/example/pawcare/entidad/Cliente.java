@@ -17,7 +17,7 @@ import lombok.Data;
 @Data
 public class Cliente {
 
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne(cascade=CascadeType.ALL, orphanRemoval = true)
     private UserEntity userEntity;
 
     @Column(name = "NAME")
@@ -34,7 +34,7 @@ public class Cliente {
     @GeneratedValue
     private Long id;
 
-    @OneToMany(mappedBy = "cliente")
+    @OneToMany(mappedBy = "cliente", orphanRemoval = true)
     private List<Mascota> mascotas = new ArrayList<>();
 
     public Cliente(Long id, String nombre, String correo, int cedula, int celular, String clave) {

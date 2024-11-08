@@ -32,7 +32,7 @@ public class Mascota {
     @JoinColumn(name = "cliente_id", nullable = true)
     private Cliente cliente;
 
-    @OneToOne(mappedBy = "mascota")
+    @OneToOne(mappedBy = "mascota",  orphanRemoval = true)
     private Tratamiento tratamiento;
 
     // Constructor actualizado para incluir el nuevo atributo

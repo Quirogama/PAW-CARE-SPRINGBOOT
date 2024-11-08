@@ -119,9 +119,12 @@ public class ClienteController {
     }
 
     @DeleteMapping("/eliminar/{id}")
-    public void borrarCliente(@PathVariable("id") Long id) {
+    public ResponseEntity<Void> borrarCliente(@PathVariable("id") Long id) {
+        if (null == clienteService.SearchById(id)) {
+            return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+        }
         clienteService.deleteById(id);
-        //return "redirect:/admin/clientes";
+        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
 
     @PostMapping("/login")
