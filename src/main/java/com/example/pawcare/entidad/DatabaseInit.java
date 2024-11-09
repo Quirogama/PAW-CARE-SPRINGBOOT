@@ -385,7 +385,7 @@ public class DatabaseInit implements ApplicationRunner {
         
         //Veterinarios
         Veterinario veterinarioSave;
-        veterinarioSave = Veterinario.builder().nombre("Dr. House").cedula(9991234).especialidad("Tratamientos Oculares").imagen("assets/img/veterinarioGenerico.png").numAtenciones(3).clave("clave123").build();
+        veterinarioSave = Veterinario.builder().nombre("Dr. House").cedula(9991234).especialidad("Tratamientos Oculares").imagen("assets/img/veterinarioGenerico.png").numAtenciones(18).clave("clave123").build();
         userEntity = saveUserVeterinario(veterinarioSave);
         veterinarioSave.setUserEntity(userEntity);
         veterinarioRepository.save(veterinarioSave);
@@ -437,11 +437,11 @@ public class DatabaseInit implements ApplicationRunner {
         userEntity = saveUserVeterinario(veterinarioSave);
         veterinarioSave.setUserEntity(userEntity);
         veterinarioRepository.save(veterinarioSave);
-        veterinarioSave = Veterinario.builder().nombre("Dra. Chi Park").cedula(9993457).especialidad("Neurocirugía").imagen("assets/img/veterinarioGenerico.png").numAtenciones(5).clave("clave457").build();
+        veterinarioSave = Veterinario.builder().nombre("Dra. Chi Park").cedula(9993457).especialidad("Neurocirugía").imagen("assets/img/veterinarioGenerico.png").numAtenciones(14).clave("clave457").build();
         userEntity = saveUserVeterinario(veterinarioSave);
         veterinarioSave.setUserEntity(userEntity);
         veterinarioRepository.save(veterinarioSave);
-        veterinarioSave = Veterinario.builder().nombre("Dr. Gregory House").cedula(9997891).especialidad("Nefrología").imagen("assets/img/veterinarioGenerico.png").numAtenciones(9).clave("clave891").build();
+        veterinarioSave = Veterinario.builder().nombre("Dr. Gregory House").cedula(9997891).especialidad("Nefrología").imagen("assets/img/veterinarioGenerico.png").numAtenciones(11).clave("clave891").build();
         userEntity = saveUserVeterinario(veterinarioSave);
         veterinarioSave.setUserEntity(userEntity);
         veterinarioRepository.save(veterinarioSave);
