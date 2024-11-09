@@ -129,6 +129,10 @@ public class ClienteController {
 
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody Cliente cliente) {
+        if(clienteService.SearchByCedula(cliente.getCedula()) == null){
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
+
         Authentication authentication = authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(
                 cliente.getCedula(),

@@ -117,6 +117,9 @@ public class AdminController {
 
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody Administrador admin) {
+        if(AdminService.SearchByCedula(admin.getCedula()) == null){
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
                 Authentication authentication = authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(
                 admin.getCedula(),
@@ -132,7 +135,7 @@ public class AdminController {
     }
 
     @GetMapping("/details")
-    public ResponseEntity<Administrador> buscarCliente() {
+    public ResponseEntity<Administrador> buscarAdministrador() {
         Administrador administrador = AdminService.SearchByCedula(
             Integer.parseInt(SecurityContextHolder.getContext().getAuthentication().getName())
         );

@@ -133,6 +133,9 @@ public class VeterinarioController {
 
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody Veterinario veterinario) {
+        if(veterinarioService.SearchByCedula(veterinario.getCedula()) == null){
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
                 Authentication authentication = authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(
                 veterinario.getCedula(),
