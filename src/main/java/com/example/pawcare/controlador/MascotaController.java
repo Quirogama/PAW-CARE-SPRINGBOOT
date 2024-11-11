@@ -19,8 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.pawcare.entidad.Cliente;
 import com.example.pawcare.entidad.Mascota;
+import com.example.pawcare.entidad.Veterinario;
 import com.example.pawcare.servicio.ClienteService;
 import com.example.pawcare.servicio.MascotaService;
+import com.example.pawcare.servicio.TratamientoService;
 
 
 
@@ -34,6 +36,9 @@ public class MascotaController {
 
     @Autowired
     ClienteService clienteService;
+
+    @Autowired
+    TratamientoService tratamientoService;
 
     @GetMapping("/total")
     public ResponseEntity<Long> getTotalMascotas() {
@@ -125,17 +130,27 @@ public class MascotaController {
     }
 
     @PutMapping("/modificar/{id}")
-public ResponseEntity<String> actualizarMascota(@PathVariable Long id, @RequestBody Mascota mascota) {
-    Mascota mascotaExistente = mascotaService.SearchById(id);
-    if (mascotaExistente == null) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Mascota no encontrada");
-    }
-    
-    if (mascotaExistente.getCliente() != null) {
-        mascota.setCliente(mascotaExistente.getCliente());
-    }
+    public ResponseEntity<Mascota> actualizarMascota(@PathVariable Long id, @RequestBody Mascota mascota) {
+        Mascota mascotaExistente = mascotaService.SearchById(id);
+        if (mascotaExistente == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(mascota);
+        }
+        
+        if (mascotaExistente.getCliente() != null) {
+            mascota.setCliente(mascotaExistente.getCliente());
+        }
 
-    mascotaService.update(mascota);
-    return ResponseEntity.ok("Mascota actualizada exitosamente");
-}
+        if("En observación".equals(mascota.getEstado()) || "Recuperado".equals(mascota.getEstado())){
+            Veterinario veterinario = tratamientoService.SearchById(mascota.getTratamiento().getId()).getVeterinario();
+            veterinario.setNumAtenciones(veterinario.getNumAtenciones() - 1);
+            tratamientoService.deleteById(mascota.getTratamiento().getId());
+        }
+
+        if (mascotaExistente.getTratamiento() != null) {
+            mascota.setTratamiento(mascotaExistente.getTratamiento());
+        }
+
+        mascotaService.update(mascota);
+        return ResponseEntity.ok(mascota);
+    }
 }
