@@ -33,6 +33,8 @@ public class SecurityConfig {
                                 .requestMatchers("/veterinario/details").hasAuthority("VETERINARIO")
                                 .requestMatchers("/veterinario/details").hasAuthority("ADMIN")
                                 .requestMatchers("/cliente/details").hasAuthority("CLIENTE")
+                                .requestMatchers("/cliente/details").hasAuthority("ADMIN")
+                                .requestMatchers("/mascotas").hasAnyAuthority("ADMIN")
                                 .requestMatchers("/cliente/cedula/{cedula}").permitAll()
                                 .anyRequest().permitAll()
                         )
