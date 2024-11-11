@@ -1,5 +1,7 @@
 package com.example.pawcare.entidad;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
@@ -26,6 +28,7 @@ public class Mascota {
     private String estado;
     private int edad;
     private String imagen;
+    private List<String> historialMedico;
 
     @JsonIgnore
     @ManyToOne
@@ -55,5 +58,12 @@ public class Mascota {
         this.estado = estado;
         this.edad = edad;
         this.imagen = imagen;
+    }
+
+    public void addToHistorialMedico(String historial) {
+        if (this.historialMedico == null) {
+            this.historialMedico = new java.util.ArrayList<>();
+        }
+        this.historialMedico.add(historial);
     }
 }

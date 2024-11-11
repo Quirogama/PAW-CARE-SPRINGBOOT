@@ -48,4 +48,9 @@ public class Tratamiento {
         this.fecha = fecha;
         this.descripcion = descripcion;
     }
+
+    @Override
+    public String toString() {
+        return "Fecha: " + fecha.toString() + ", Descripción: " + descripcion + ", Droga aplicada: " + droga.getNombre() + ", Veterinario encargado: " + veterinario.getNombre();
+    }
 }

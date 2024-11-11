@@ -64,6 +64,8 @@ public class TratamientoController {
 
         tratamientoService.add(tratamiento);
 
+        String tratamientoHistorial = tratamiento.toString();
+        mascota.addToHistorialMedico(tratamientoHistorial);
         mascota.setEstado("En tratamiento");
         mascotaService.update(mascota);
 

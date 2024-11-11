@@ -551,6 +551,8 @@ public class DatabaseInit implements ApplicationRunner {
         for (int i = 0; i < 10; i++) {
             Mascota mascota = mascotasEnTratamiento.get(i);
             Tratamiento tratamiento = Tratamientos.get(i);
+            String tratamientoHistorial = tratamiento.toString();
+            mascota.addToHistorialMedico(tratamientoHistorial);
             mascota.setTratamiento(tratamiento);
             tratamiento.setMascota(mascota);
             tratamientoRepository.save(tratamiento);
