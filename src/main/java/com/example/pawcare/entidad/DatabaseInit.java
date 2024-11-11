@@ -278,6 +278,7 @@ public class DatabaseInit implements ApplicationRunner {
         userEntity = saveUserCliente(clienteSave);
         clienteSave.setUserEntity(userEntity);
         clienteRepository.save(clienteSave);
+        
 
         
         

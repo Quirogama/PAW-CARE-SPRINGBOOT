@@ -42,7 +42,7 @@ public class Veterinario {
     private int numAtenciones;
     
     @JsonIgnore
-    @OneToMany(mappedBy = "veterinario", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "veterinario", orphanRemoval = true)
     private List<Tratamiento> tratamientos = new ArrayList<>();
 
     public Veterinario(Long id, String nombre, int cedula, String especialidad, String imagen, int numAtenciones, String clave) {

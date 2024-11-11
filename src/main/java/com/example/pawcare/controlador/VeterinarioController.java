@@ -99,7 +99,17 @@ public class VeterinarioController {
 
     @DeleteMapping("/eliminar/{id}")
     public void borrarVeterinario(@PathVariable("id") Long id) {
+        Veterinario veterinario = veterinarioService.SearchById(id);
+        if (veterinario == null) {
+            return;
+        }
+        UserEntity userEntity = veterinario.getUserEntity();
+        if (userEntity != null) {
+            userEntity.getRoles().clear(); // Elimina las referencias a los roles
+            userRepository.save(userEntity); // Guarda el cambio antes de eliminar el userEntity
+        }
         veterinarioService.deleteById(id);
+        userRepository.deleteById(userEntity.getId());
     }
 
     @GetMapping("/modificar/{id}")

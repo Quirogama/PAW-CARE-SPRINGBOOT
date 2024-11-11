@@ -52,6 +52,7 @@ public class ClienteController {
     @Autowired
     AuthenticationManager authenticationManager;
 
+
     @Autowired
     JWTGenerator JWTGenerator;
 
@@ -120,12 +121,23 @@ public class ClienteController {
 
     @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<Void> borrarCliente(@PathVariable("id") Long id) {
-        if (null == clienteService.SearchById(id)) {
-            return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+        Cliente cliente = clienteService.SearchById(id);
+        if (cliente == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        clienteService.deleteById(id);
-        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+        
+        UserEntity userEntity = cliente.getUserEntity();
+        if (userEntity != null) {
+            userEntity.getRoles().clear(); // Elimina las referencias a los roles
+            userRepository.save(userEntity); // Guarda el cambio antes de eliminar el userEntity
+        }
+        
+        clienteService.deleteById(id); // Elimina el cliente
+        userRepository.deleteById(userEntity.getId()); // Elimina el userEntity
+        
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
 
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody Cliente cliente) {
